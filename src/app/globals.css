@@ -1,26 +1,79 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* Premium Tactical/Camo Theme */
+    --background: 140 30% 2%;
+    /* Very dark deep jungle (#030704) */
+    --foreground: 140 10% 95%;
+    /* Off-white with tiny green tint */
+
+    --primary: 135 40% 45%;
+    /* Muted Tactical Green */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 140 20% 10%;
+    /* Dark Jungle for cards */
+    --secondary-foreground: 140 10% 90%;
+
+    --accent: 45 80% 50%;
+    /* Matte Gold/Bronze */
+    --muted: 140 20% 10%;
+    --muted-foreground: 140 10% 60%;
+
+    --border: 140 20% 15%;
+    --input: 140 20% 10%;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    /* Premium Abstract Camo Background */
+    background-image:
+      radial-gradient(circle at 15% 50%, rgba(30, 50, 35, 0.08), transparent 25%),
+      radial-gradient(circle at 85% 30%, rgba(50, 45, 20, 0.05), transparent 25%),
+      radial-gradient(circle at 50% 80%, rgba(20, 40, 50, 0.08), transparent 40%);
+    background-attachment: fixed;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  .section-padding {
+    @apply px-4 sm:px-6 lg:px-8 py-12 md:py-20;
+  }
+
+  .container-custom {
+    @apply max-w-7xl mx-auto;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Add smooth transitions for form elements */
+input,
+select,
+textarea {
+  @apply transition-colors duration-200;
+}
+
+/* Custom scrollbar for account pages */
+.account-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.account-scrollbar::-webkit-scrollbar-track {
+  @apply bg-gray-100;
+}
+
+.account-scrollbar::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 rounded-full;
+}
+
+.account-scrollbar::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-400;
 }

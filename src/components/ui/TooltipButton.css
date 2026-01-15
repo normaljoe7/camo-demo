@@ -1,0 +1,162 @@
+/* src/components/ui/TooltipButton.css */
+.tooltip-button {
+    --width: auto;
+    --height: auto;
+    --tooltip-height: 35px;
+    --tooltip-width: 140px;
+    --gap-between-tooltip-to-button: 18px;
+    --button-color: #222;
+    --tooltip-color: #fff;
+    position: relative;
+    text-align: center;
+    border-radius: 0.45em;
+    transition: background 0.3s;
+    overflow: visible !important;
+  }
+  
+  /* Tooltip using pseudo-elements */
+  .tooltip-button::before {
+    position: absolute;
+    content: attr(data-tooltip);
+    width: var(--tooltip-width);
+    height: var(--tooltip-height);
+    background-color: #374151; /* gray-700 */
+    font-size: 0.875rem; /* text-sm */
+    color: #fff;
+    border-radius: .5em;
+    line-height: var(--tooltip-height);
+    bottom: calc(100% + var(--gap-between-tooltip-to-button) + 10px);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 50;
+    padding: 0 12px;
+    white-space: nowrap;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  }
+  
+  .tooltip-button::after {
+    position: absolute;
+    content: '';
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-top-color: #374151; /* gray-700 */
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: calc(100% + var(--gap-between-tooltip-to-button) - 10px);
+    z-index: 50;
+  }
+  
+  .tooltip-button::after,
+  .tooltip-button::before {
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+  
+  /* Button content wrappers */
+  .tooltip-button .button-wrapper {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .tooltip-button .text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    color: inherit;
+    transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+  
+  .tooltip-button .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 100%;
+    color: inherit;
+    transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+  
+  /* Hover effects */
+  .tooltip-button:hover {
+    background: #111827 !important; /* gray-900 */
+  }
+  
+  .tooltip-button:hover .text {
+    transform: translateY(-100%);
+  }
+  
+  .tooltip-button:hover .icon {
+    transform: translateY(-100%);
+  }
+  
+  .tooltip-button:hover::before,
+  .tooltip-button:hover::after {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .tooltip-button:hover::after {
+    bottom: calc(100% + var(--gap-between-tooltip-to-button) - 20px);
+  }
+  
+  .tooltip-button:hover::before {
+    bottom: calc(100% + var(--gap-between-tooltip-to-button));
+  }
+  
+  /* Size adjustments */
+  .tooltip-button.sm {
+    --tooltip-width: 120px;
+    --tooltip-height: 30px;
+  }
+  
+  .tooltip-button.md {
+    --tooltip-width: 140px;
+    --tooltip-height: 35px;
+  }
+  
+  .tooltip-button.lg {
+    --tooltip-width: 160px;
+    --tooltip-height: 40px;
+  }
+  
+  /* Variant colors */
+  .tooltip-button.primary::before {
+    background-color: #1d4ed8; /* blue-700 */
+  }
+  .tooltip-button.primary::after {
+    border-top-color: #1d4ed8;
+  }
+  
+  .tooltip-button.black::before {
+    background-color: #374151; /* gray-700 */
+  }
+  .tooltip-button.black::after {
+    border-top-color: #374151;
+  }
+  
+  .tooltip-button.accent::before {
+    background-color: #059669; /* emerald-700 */
+  }
+  .tooltip-button.accent::after {
+    border-top-color: #059669;
+  }
+  
+  .tooltip-button.white::before {
+    background-color: #6b7280; /* gray-500 */
+    color: white;
+  }
+  .tooltip-button.white::after {
+    border-top-color: #6b7280;
+  }
