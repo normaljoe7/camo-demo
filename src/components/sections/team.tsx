@@ -1,5 +1,6 @@
 import { teamMembers } from '@/lib/constants';
 import { MapPin } from 'lucide-react';
+import Card from '@/components/ui/card';
 
 export default function Team() {
   return (
@@ -22,9 +23,9 @@ export default function Team() {
         {/* Team Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {teamMembers.map((member) => (
-            <div key={member.id} className="bg-black/20 backdrop-blur-md rounded-xl shadow-lg overflow-hidden border border-white/10 group hover:shadow-xl transition-all duration-300">
+            <Card key={member.id} className="h-full group transition-all duration-300 hover:shadow-xl">
               {/* Image placeholder */}
-              <div className="h-64 bg-gradient-to-br from-gray-900 to-blue-900 relative">
+              <div className="h-64 bg-gradient-to-br from-gray-900 to-blue-900 relative rounded-t-xl overflow-hidden">
                 <div className="absolute inset-0 flex items-center justify-center">
                   <MapPin className="h-16 w-16 text-white/30" />
                 </div>
@@ -32,12 +33,12 @@ export default function Team() {
 
               {/* Content */}
               <div className="p-6">
-                <h3 className="text-xl font-bold text-white mb-1">{member.name}</h3>
+                <h3 className="text-xl font-bold text-white mb-1 group-hover:text-primary transition-colors">{member.name}</h3>
                 <p className="text-primary font-semibold text-sm mb-2">{member.role}</p>
                 <p className="text-gray-400 text-xs mb-4">{member.experience} • {member.specialty}</p>
-                <p className="text-gray-300 text-sm">{member.bio}</p>
+                <p className="text-gray-300 text-sm line-clamp-3">{member.bio}</p>
               </div>
-            </div>
+            </Card>
           ))}
         </div>
       </div>

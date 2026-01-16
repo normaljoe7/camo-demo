@@ -2,16 +2,17 @@
 
 import { ArrowRight, Compass, Shield, Users, Star } from 'lucide-react';
 import Button from '@/components/ui/button';
+import AnimatedButton from '@/components/ui/AnimatedButton';
 import { useState, useEffect } from 'react';
 
 export default function Hero() {
   const [currentExpedition, setCurrentExpedition] = useState(0);
 
   const expeditions = [
-    'Arctic Exploration',
-    'Amazon Rainforest',
-    'Himalayan Trek',
-    'Saharan Desert'
+    'Bandipur Tiger Reserve',
+    'Mudumalai Tiger Reserve',
+    'Kabini Tiger Reserve',
+    'Bhadra Tiger Reserve'
   ];
 
   useEffect(() => {
@@ -43,12 +44,16 @@ export default function Hero() {
           </div>
 
           {/* Main Heading */}
-          <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold mb-8 leading-tight tracking-tight">
-            <span className="block text-white drop-shadow-lg">Discover the</span>
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-accent via-white to-accent opacity-90 pb-2">
-              Untouched
+          <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold mb-8 leading-tight tracking-tight group cursor-default select-none">
+            <span className="block text-white drop-shadow-lg lg:opacity-20 lg:group-hover:opacity-100 transition-all duration-700 ease-in-out">
+              Discover the
             </span>
-            <span className="block font-light text-white/90">Wonders</span>
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-accent via-white to-accent pb-2 lg:opacity-10 lg:group-hover:opacity-100 transition-all duration-700 ease-in-out">
+              Untamed
+            </span>
+            <span className="block font-light text-white/90 lg:opacity-20 lg:group-hover:opacity-100 transition-all duration-700 ease-in-out">
+              Wonders
+            </span>
           </h1>
 
           {/* Rotating Expedition */}
@@ -69,18 +74,24 @@ export default function Hero() {
 
           {/* Description */}
           <p className="text-lg md:text-xl text-gray-300 mb-16 max-w-2xl mx-auto leading-relaxed font-light">
-            Professional expedition services to the most remote and breathtaking locations on Earth.
-            Expert guides ensuring safety, comfort, and unforgettable experiences.
+            Spanning iconic tiger habitats and lesser-known forest corridors, each journey is guided by expertise, limited in scale, and designed to unfold at nature’s pace.
           </p>
 
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-20">
-            <Button variant="solid" size="lg" icon={ArrowRight} iconPosition="right" className="bg-accent hover:bg-accent/90 text-black font-semibold px-8 py-6 text-lg rounded-full">
+          {/* CTA Button */}
+          <div className="flex justify-center mb-20 animate-fade-in-up">
+            <AnimatedButton
+              variant="accent"
+              size="lg"
+              icon={ArrowRight}
+              tooltipText="Discover our exclusive destinations"
+              className="px-10 py-6 text-xl rounded-full shadow-[0_0_30px_rgba(var(--accent),0.3)] hover:shadow-[0_0_50px_rgba(var(--accent),0.5)] transition-shadow duration-500"
+              onClick={() => {
+                const element = document.getElementById('expeditions');
+                element?.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
               Explore All Expeditions
-            </Button>
-            <Button variant="outline" size="lg" className="border-white/30 text-white hover:bg-white/10 backdrop-blur-sm px-8 py-6 text-lg rounded-full">
-              Download Brochure
-            </Button>
+            </AnimatedButton>
           </div>
 
           {/* Stats - Glassmorphism Card */}
@@ -95,7 +106,7 @@ export default function Hero() {
             <div className="text-center group">
               <div className="flex flex-col items-center justify-center mb-2 group-hover:transform group-hover:scale-110 transition-transform duration-300">
                 <Compass className="h-8 w-8 text-accent mb-3" />
-                <span className="text-4xl font-bold text-white">40+</span>
+                <span className="text-4xl font-bold text-white">4</span>
               </div>
               <p className="text-gray-400 text-xs uppercase tracking-wider">Destinations</p>
             </div>

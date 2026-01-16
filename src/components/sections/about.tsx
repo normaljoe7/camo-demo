@@ -11,18 +11,21 @@ export default function About() {
               About Us
             </span>
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              Your Trusted <span className="text-primary">Adventure</span> Partner
+              The Art of
             </h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6"> <span className="text-primary">Indian Safari</span></h2>
             <p className="text-gray-300 text-lg mb-6">
-              Since 2010, ExpeditionCo has been leading adventurers to the world&apos;s most remote
-              and breathtaking destinations. Our expert team combines decades of experience with
-              cutting-edge safety protocols to ensure unforgettable journeys.
+              Curated Encounters with India&apos;s Wild.
+              <br />
+              Step beyond the ordinary and into India&apos;s most untamed realms.
+              CamoScapes Expedition crafts intimate wildlife journeys through the country&apos;s legendary forests—where tigers prowl ancient sal trees, elephants move in quiet grandeur, and rare moments unfold far from the crowds.
+
             </p>
-            <p className="text-gray-300 mb-8">
-              We specialize in carefully curated expeditions that balance adventure with safety,
-              comfort with authenticity, and challenge with support. Every expedition is designed
-              to provide transformative experiences while maintaining the highest standards of
-              safety and environmental responsibility.
+            <p className="text-gray-300 text-lg mb-8">
+              Every expedition is meticulously designed for discerning explorers, photographers, and conservation-minded travelers seeking privileged access to India’s living wilderness. From dawn safaris bathed in golden light to hushed encounters that become lifelong memories, we bring you closer—to the wild, and to its soul.
+              <br />
+              <br />
+              Safari, Elevated. Wild, Revealed.
             </p>
           </div>
 
@@ -31,22 +34,22 @@ export default function About() {
             <div className="p-6 bg-black/20 border border-white/10 rounded-xl">
               <Shield className="h-8 w-8 text-primary mb-4" />
               <h3 className="text-xl font-bold text-white mb-2">100% Safety Record</h3>
-              <p className="text-gray-300 text-sm">Zero incidents across 500+ expeditions</p>
+              <p className="text-gray-300 text-sm">Zero incidents across expeditions</p>
             </div>
             <div className="p-6 bg-black/20 border border-white/10 rounded-xl">
               <Users className="h-8 w-8 text-primary mb-4" />
               <h3 className="text-xl font-bold text-white mb-2">Expert Guides</h3>
-              <p className="text-gray-300 text-sm">Certified professionals with 10+ years experience</p>
+              <p className="text-gray-300 text-sm">Led by field specialists with years of jungle experience</p>
             </div>
             <div className="p-6 bg-black/20 border border-white/10 rounded-xl">
               <Compass className="h-8 w-8 text-primary mb-4" />
-              <h3 className="text-xl font-bold text-white mb-2">40+ Destinations</h3>
-              <p className="text-gray-300 text-sm">From Arctic to Amazon, we go everywhere</p>
+              <h3 className="text-xl font-bold text-white mb-2">4 Destinations</h3>
+              <p className="text-gray-300 text-sm">Beyond Observation. A Refined Wild Experience.</p>
             </div>
             <div className="p-6 bg-black/20 border border-white/10 rounded-xl">
               <Award className="h-8 w-8 text-primary mb-4" />
-              <h3 className="text-xl font-bold text-white mb-2">Award Winning</h3>
-              <p className="text-gray-300 text-sm">Recognized for excellence in adventure travel</p>
+              <h3 className="text-xl font-bold text-white mb-2">Archives</h3>
+              <p className="text-gray-300 text-sm">Treasured chronicles of our expeditions</p>
             </div>
           </div>
         </div>

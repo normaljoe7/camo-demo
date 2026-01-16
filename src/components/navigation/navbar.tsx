@@ -4,6 +4,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Menu, X, MapPin, Phone, Calendar, User, LogIn, UserPlus, LogOut, Settings } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import Button from '@/components/ui/button';
 import AnimatedButton from '@/components/ui/AnimatedButton';
@@ -145,13 +146,17 @@ export default function Navbar() {
         <div className="w-full px-6 py-4">
           <div className="flex justify-between items-center max-w-7xl mx-auto">
             <div className="flex items-center space-x-2">
-              <div className="p-2 bg-white rounded-lg">
-                <MapPin className="h-6 w-6 text-[#74F227]" />
+              <div className="flex-shrink-0">
+                <img
+                  src="/logo.jpg"
+                  alt="CamoScapes Logo"
+                  className="w-12 h-12 rounded-lg object-cover shadow-lg"
+                />
               </div>
               <div>
-                <span className="text-2xl font-bold text-white">Camoscapes</span>
-                <span className="text-xs text-white/90 font-medium uppercase tracking-wider block">
-                  Adventure Awaits
+                <span className="text-2xl font-bold text-white block">CamoScapes</span>
+                <span className="text-[15px] text-white/90 font-medium uppercase tracking-wider block -mt-1">
+                  Wilderness, Up-Close
                 </span>
               </div>
             </div>
@@ -172,15 +177,19 @@ export default function Navbar() {
         <div className="flex justify-between items-center max-w-7xl mx-auto">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2 group" onClick={() => setIsOpen(false)}>
-            <div className="p-2 bg-white rounded-lg group-hover:bg-white/90 transition-colors">
-              <MapPin className="h-6 w-6 text-accent" />
+            <div className="flex-shrink-0 group-hover:scale-105 transition-transform duration-300">
+              <img
+                src="/images/logo.jpg"
+                alt="CamoScapes Logo"
+                className="w-12 h-12 rounded-lg shadow-lg"
+              />
             </div>
             <div>
-              <span className="text-2xl font-bold text-white block leading-tight">
-                Camoscapes
+              <span className="text-2xl font-bold block text-transparent bg-clip-text bg-gradient-to-r from-accent via-white to-accent opacity-90 pb-0.5 leading-tight">
+                CamoScapes
               </span>
-              <span className="text-xs text-white/90 font-medium uppercase tracking-wider">
-                Adventure Awaits
+              <span className="text-[11px] text-white/90 font-medium uppercase tracking-wider block -mt-1">
+                Wilderness, Up-Close
               </span>
             </div>
           </Link>
@@ -290,7 +299,7 @@ export default function Navbar() {
               <div className="group relative flex items-center">
                 <Phone className="h-4 w-4 text-white/90 cursor-pointer transition-colors hover:text-white" />
                 <span className="ml-2 text-sm font-medium text-white/90 opacity-0 max-w-0 overflow-hidden whitespace-nowrap transition-all duration-300 group-hover:opacity-100 group-hover:max-w-xs group-hover:ml-2">
-                  +1 (555) 123-4567
+                  +91 7676784392
                 </span>
               </div>
 
@@ -416,7 +425,7 @@ export default function Navbar() {
                   <div className="group relative flex items-center mb-4 px-4">
                     <Phone className="h-4 w-4 text-white/90 cursor-pointer transition-colors hover:text-white" />
                     <span className="ml-2 text-sm font-medium text-white/90 opacity-0 max-w-0 overflow-hidden whitespace-nowrap transition-all duration-300 group-hover:opacity-100 group-hover:max-w-xs group-hover:ml-2">
-                      +1 (555) 123-4567
+                      +91 7676784392
                     </span>
                   </div>
                   <AnimatedButton

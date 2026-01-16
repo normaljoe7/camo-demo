@@ -1,5 +1,6 @@
 import { MapPin, Phone, Mail, Clock, Facebook, Instagram, Twitter, Youtube } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Footer() {
   const quickLinks = [
@@ -12,12 +13,10 @@ export default function Footer() {
   ];
 
   const expeditions = [
-    { name: 'Arctic Exploration', href: '#' },
-    { name: 'Amazon Rainforest', href: '#' },
-    { name: 'Himalayan Trek', href: '#' },
-    { name: 'Saharan Desert', href: '#' },
-    { name: 'Antarctic Cruise', href: '#' },
-    { name: 'Patagonia Hiking', href: '#' },
+    { name: 'Bandipur Tiger Reserve', href: '#' },
+    { name: 'Mudumalai Tiger Reserve', href: '#' },
+    { name: 'Bhadra Tiger Reserve', href: '#' },
+    { name: 'Kabini Tiger Reserve', href: '#' },
   ];
 
   const socialLinks = [
@@ -33,14 +32,20 @@ export default function Footer() {
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
           {/* Company Info */}
           <div className="lg:col-span-1">
-            <div className="flex items-center space-x-2 mb-6">
-              <MapPin className="h-8 w-8 text-primary" />
-              <span className="text-2xl font-bold">
-                Expedition<span className="text-primary">Co</span>
+            <div className="flex items-center space-x-3 mb-6">
+              <div className="flex-shrink-0">
+                <img
+                  src="/logo.jpg"
+                  alt="CamoScapes Logo"
+                  className="w-10 h-10 rounded-lg shadow-lg object-cover"
+                />
+              </div>
+              <span className="text-2xl font-bold text-white leading-tight">
+                CamoScapes
               </span>
             </div>
             <p className="text-gray-400 mb-6">
-              Professional expedition services to the world&apos;s most remote and breathtaking locations. 
+              Professional expedition services to the world&apos;s most remote and breathtaking locations.
               Safety, expertise, and unforgettable experiences since 2010.
             </p>
             <div className="flex space-x-4">
@@ -105,8 +110,8 @@ export default function Footer() {
               </div>
               <div className="flex items-center space-x-3">
                 <Phone className="h-5 w-5 text-primary flex-shrink-0" />
-                <a href="tel:+15551234567" className="text-gray-400 hover:text-primary transition-colors">
-                  +1 (555) 123-4567
+                <a href="tel:+917676784392" className="text-gray-400 hover:text-primary transition-colors">
+                  +91 7676784392
                 </a>
               </div>
               <div className="flex items-center space-x-3">
@@ -125,7 +130,7 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500 text-sm">
-          <p>&copy; {new Date().getFullYear()} ExpeditionCo. All rights reserved. | Designed for Adventure</p>
+          <p>&copy; {new Date().getFullYear()} CamoScapes. All rights reserved. | Wilderness, Up-Close</p>
           <p className="mt-2 text-xs">
             <Link href="#" className="hover:text-primary transition-colors">Privacy Policy</Link>
             {' | '}

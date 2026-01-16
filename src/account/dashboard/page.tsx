@@ -4,8 +4,8 @@ import Card from '@/components/ui/card';
 
 export default function DashboardPage() {
   const upcomingTrips = [
-    { id: 1, name: 'Arctic Exploration', date: 'Jun 15-29, 2024', status: 'Confirmed' },
-    { id: 2, name: 'Amazon Rainforest', date: 'Aug 10-20, 2024', status: 'Pending' },
+    { id: 1, name: 'Bandipur Tiger Reserve', date: 'Jun 15-29, 2024', status: 'Confirmed' },
+    { id: 2, name: 'Mudumalai Tiger Reserve', date: 'Aug 10-20, 2024', status: 'Pending' },
   ];
 
   const recentActivity = [
@@ -68,11 +68,10 @@ export default function DashboardPage() {
                     <span className="text-sm text-gray-500">{trip.date}</span>
                   </div>
                 </div>
-                <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-                  trip.status === 'Confirmed' 
+                <span className={`px-3 py-1 rounded-full text-xs font-medium ${trip.status === 'Confirmed'
                     ? 'bg-green-100 text-green-800'
                     : 'bg-yellow-100 text-yellow-800'
-                }`}>
+                  }`}>
                   {trip.status}
                 </span>
               </div>
