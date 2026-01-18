@@ -5,13 +5,14 @@ import { useState, useEffect, useCallback } from 'react';
 import { Menu, X, MapPin, Phone, Calendar, User, LogIn, UserPlus, LogOut, Settings } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import Button from '@/components/ui/button';
 import AnimatedButton from '@/components/ui/AnimatedButton';
 import { useAuth } from '@/contexts/AuthContext'; // ADD THIS IMPORT
 
 export default function Navbar() {
   const router = useRouter();
+  const pathname = usePathname();
   const { user, logout } = useAuth(); // ADD THIS LINE - replace isLoggedIn with user
   const [isOpen, setIsOpen] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(100); // Start at 100% (fully visible)
@@ -21,12 +22,12 @@ export default function Navbar() {
   const [isMounted, setIsMounted] = useState(false);
 
   const navigation = [
-    { name: 'Home', href: '/' },
-    { name: 'Expeditions', href: '#expeditions' },
-    { name: 'About Us', href: '#about' },
-    { name: 'Team', href: '#team' },
-    { name: 'Gallery', href: '#gallery' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Home', href: '/', id: 'home' },
+    { name: 'Expeditions', href: '/expeditions', id: 'expeditions' },
+    { name: 'About Us', href: '/about', id: 'about' },
+    { name: 'Team', href: '/team', id: 'team' },
+    { name: 'Gallery', href: '/gallery', id: 'gallery' },
+    { name: 'Contact', href: '/contact', id: 'contact' },
   ];
 
   // Initialize scroll position on mount
@@ -169,6 +170,29 @@ export default function Navbar() {
     );
   }
 
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, item: { name?: string; href: string; id: string }) => {
+    if (pathname === '/') {
+      const element = document.getElementById(item.id);
+      if (element) {
+        e.preventDefault();
+        setIsOpen(false);
+        element.scrollIntoView({ behavior: 'smooth' });
+        // Optional: Update URL hash without jump?
+        // window.history.pushState(null, '', `#${item.id}`);
+        // But for Home, we might just want to scroll to top if id is 'home'
+        if (item.id === 'home') {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        return;
+      }
+    }
+    // Default navigation behavior handled by Link
+    setIsOpen(false);
+    if (item.href === '/') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
   return (
     <nav
       className="absolute top-0 left-0 w-full z-50 bg-transparent"
@@ -176,10 +200,10 @@ export default function Navbar() {
       <div className="w-full px-6 py-4">
         <div className="flex justify-between items-center max-w-7xl mx-auto">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2 group" onClick={() => setIsOpen(false)}>
+          <Link href="/" className="flex items-center space-x-2 group" onClick={(e) => handleNavClick(e, { name: 'Home', href: '/', id: 'home' })}>
             <div className="flex-shrink-0 group-hover:scale-105 transition-transform duration-300">
               <img
-                src="/images/logo.jpg"
+                src="/logo.jpg"
                 alt="CamoScapes Logo"
                 className="w-12 h-12 rounded-lg shadow-lg"
               />
@@ -201,7 +225,7 @@ export default function Navbar() {
                 key={item.name}
                 href={item.href}
                 className="text-white hover:text-white/90 transition-colors font-medium text-sm uppercase tracking-wide relative group"
-                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                onClick={(e) => handleNavClick(e, item)}
               >
                 {item.name}
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white group-hover:w-full transition-all duration-300" />
@@ -231,12 +255,12 @@ export default function Navbar() {
                         </div>
 
                         <Link
-                          href="/account/dashboard"
+                          href={user.isAdmin ? "/admin" : "/account/dashboard"}
                           className="flex items-center space-x-2 px-4 py-3 text-gray-300 hover:bg-white/10 transition-colors"
                           onClick={() => setUserMenuOpen(false)}
                         >
                           <User className="h-4 w-4" />
-                          <span>My Dashboard</span>
+                          <span>{user.isAdmin ? "Admin Dashboard" : "My Dashboard"}</span>
                         </Link>
 
                         <Link
@@ -308,6 +332,7 @@ export default function Navbar() {
                 size="sm"
                 icon={Calendar}
                 tooltipText="Secure your adventure today!"
+                onClick={() => router.push('/expeditions')}
               >
                 Book Now
               </AnimatedButton>
@@ -333,10 +358,7 @@ export default function Navbar() {
                   key={item.name}
                   href={item.href}
                   className="text-white hover:text-white hover:bg-white/10 transition-colors py-3 px-4 rounded-lg font-medium"
-                  onClick={() => {
-                    setIsOpen(false);
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                  }}
+                  onClick={(e) => handleNavClick(e, item)}
                 >
                   {item.name}
                 </Link>
@@ -434,7 +456,10 @@ export default function Navbar() {
                     icon={Calendar}
                     tooltipText="Book your expedition!"
                     className="w-full"
-                    onClick={() => setIsOpen(false)}
+                    onClick={() => {
+                      setIsOpen(false);
+                      router.push('/expeditions');
+                    }}
                   >
                     Book Expedition
                   </AnimatedButton>

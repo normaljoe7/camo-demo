@@ -7,24 +7,26 @@ import { cn } from '@/lib/utils';
 
 interface AnimatedButtonProps {
   children: ReactNode;
-  tooltipText: string;
+  tooltipText?: string;
   icon?: LucideIcon;
   variant?: 'primary' | 'black' | 'accent' | 'white' | 'solid';
   size?: 'sm' | 'md' | 'lg';
   className?: string;
   onClick?: () => void;
   disabled?: boolean;
+  type?: 'button' | 'submit' | 'reset';
 }
 
 export default function AnimatedButton({
   children,
-  tooltipText,
+  tooltipText = '',
   icon: Icon,
   variant = 'black',
   size = 'md',
   className,
   onClick,
   disabled = false,
+  type = 'button',
 }: AnimatedButtonProps) {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -54,6 +56,7 @@ export default function AnimatedButton({
 
   return (
     <button
+      type={type}
       className={cn(
         'group relative',
         baseStyles,

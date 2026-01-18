@@ -4,8 +4,10 @@ import { ArrowRight, Compass, Shield, Users, Star } from 'lucide-react';
 import Button from '@/components/ui/button';
 import AnimatedButton from '@/components/ui/AnimatedButton';
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function Hero() {
+  const router = useRouter();
   const [currentExpedition, setCurrentExpedition] = useState(0);
 
   const expeditions = [
@@ -86,8 +88,8 @@ export default function Hero() {
               tooltipText="Discover our exclusive destinations"
               className="px-10 py-6 text-xl rounded-full shadow-[0_0_30px_rgba(var(--accent),0.3)] hover:shadow-[0_0_50px_rgba(var(--accent),0.5)] transition-shadow duration-500"
               onClick={() => {
-                const element = document.getElementById('expeditions');
-                element?.scrollIntoView({ behavior: 'smooth' });
+                // Navigate to /expeditions per requirement
+                router.push('/expeditions');
               }}
             >
               Explore All Expeditions

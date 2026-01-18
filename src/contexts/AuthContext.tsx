@@ -9,6 +9,7 @@ interface User {
   name: string;
   email: string;
   avatar?: string;
+  isAdmin?: boolean;
 }
 
 interface AuthContextType {
@@ -41,38 +42,47 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setIsLoading(false);
   }, []);
 
-  // Mock login function - Replace with real API call
+  // Login function
   const login = async (email: string, password: string) => {
     setIsLoading(true);
     try {
       // Simulate API delay
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      // Mock validation
+      await new Promise(resolve => setTimeout(resolve, 800));
+
+      // Admin Logic
+      if (email === 'admin@expedition.com' && password === 'admin123') {
+        const adminUser: User = {
+          id: 'admin',
+          name: 'Expedition Admin',
+          email: email,
+          avatar: 'https://ui-avatars.com/api/?name=Admin',
+          isAdmin: true
+        };
+        setUser(adminUser);
+        localStorage.setItem('camoscapes_user', JSON.stringify(adminUser));
+        router.push('/admin');
+        return;
+      }
+
+      // Regular User Logic (Mock)
       if (!email || !password) {
         throw new Error('Please enter email and password');
       }
-      
-      // In real app, call your API:
-      // const response = await fetch('/api/auth/login', {
-      //   method: 'POST',
-      //   body: JSON.stringify({ email, password }),
-      // });
-      
-      // Mock user data
+
       const mockUser: User = {
         id: '1',
         name: 'John Adventurer',
         email: email,
         avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=${email}`,
+        isAdmin: false
       };
-      
+
       setUser(mockUser);
       localStorage.setItem('camoscapes_user', JSON.stringify(mockUser));
-      
+
       // Redirect to dashboard
       router.push('/account/dashboard');
-      
+
     } catch (error) {
       throw error;
     } finally {
@@ -80,42 +90,29 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   };
 
-  // Mock signup function - Replace with real API call
+  // Mock signup function
   const signup = async (name: string, email: string, password: string) => {
     setIsLoading(true);
     try {
-      // Simulate API delay
       await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      // Mock validation
+
       if (!name || !email || !password) {
         throw new Error('Please fill all fields');
       }
-      
-      if (password.length < 6) {
-        throw new Error('Password must be at least 6 characters');
-      }
-      
-      // In real app, call your API:
-      // const response = await fetch('/api/auth/signup', {
-      //   method: 'POST',
-      //   body: JSON.stringify({ name, email, password }),
-      // });
-      
-      // Mock user data
+
       const mockUser: User = {
         id: Date.now().toString(),
         name: name,
         email: email,
         avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=${email}`,
+        isAdmin: false
       };
-      
+
       setUser(mockUser);
       localStorage.setItem('camoscapes_user', JSON.stringify(mockUser));
-      
-      // Redirect to dashboard
+
       router.push('/account/dashboard');
-      
+
     } catch (error) {
       throw error;
     } finally {

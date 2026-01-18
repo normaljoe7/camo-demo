@@ -5,6 +5,7 @@ import './globals.css';
 import Navbar from '@/components/navigation/navbar';
 import Footer from '@/components/navigation/footer';
 import { AuthProvider } from '@/contexts/AuthContext';
+import { ExpeditionProvider } from '@/contexts/ExpeditionContext';
 import Starfield from '@/components/ui/starfield';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -23,10 +24,12 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth">
       <body className={`${inter.className} min-h-screen text-foreground`}>
         <AuthProvider>
-          <Starfield />
-          <Navbar />
-          <main>{children}</main>
-          <Footer />
+          <ExpeditionProvider>
+            <Starfield />
+            <Navbar />
+            <main>{children}</main>
+            <Footer />
+          </ExpeditionProvider>
         </AuthProvider>
       </body>
     </html>
