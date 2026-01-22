@@ -17,7 +17,7 @@ export default function ExpeditionForm({ initialData, onSave, onCancel }: Expedi
         description: initialData?.description || '',
         fullDescription: initialData?.fullDescription || '',
         duration: initialData?.duration || '',
-        difficulty: initialData?.difficulty || 'Intermediate',
+        category: initialData?.category || 'South',
         price: initialData?.price || '',
         season: initialData?.season || '',
         image: initialData?.image || '',
@@ -126,17 +126,15 @@ export default function ExpeditionForm({ initialData, onSave, onCancel }: Expedi
                     </div>
 
                     <div>
-                        <label className="block text-sm font-medium text-gray-300 mb-1">Difficulty</label>
+                        <label className="block text-sm font-medium text-gray-300 mb-1">Category</label>
                         <select
-                            name="difficulty"
-                            value={formData.difficulty}
+                            name="category"
+                            value={formData.category}
                             onChange={handleChange}
                             className="w-full bg-black/20 border border-white/10 rounded-lg p-3 text-white focus:ring-2 focus:ring-white/50 outline-none"
                         >
-                            <option value="Easy">Easy</option>
-                            <option value="Intermediate">Intermediate</option>
-                            <option value="Advanced">Advanced</option>
-                            <option value="Expert">Expert</option>
+                            <option value="South">South</option>
+                            <option value="North">North</option>
                         </select>
                     </div>
 

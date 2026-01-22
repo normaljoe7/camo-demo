@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <Expeditions />
+      <Expeditions limit={6} />
       <About />
       <Team />
       <Gallery />

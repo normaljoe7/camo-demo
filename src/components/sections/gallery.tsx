@@ -19,22 +19,43 @@ export default function Gallery() {
         </div>
 
         {/* Gallery Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {galleryImages.map((image) => (
-            <div
-              key={image.id}
-              className="relative overflow-hidden rounded-xl aspect-square bg-gradient-to-br from-gray-900 to-blue-900 group cursor-pointer hover:scale-105 transition-transform duration-300"
-            >
-              <div className="absolute inset-0 flex items-center justify-center">
-                <Mountain className="h-20 w-20 text-white/30" />
+        {/* Gallery Marquee */}
+        <div className="relative w-full overflow-hidden mask-gradient">
+          <div className="flex w-max animate-scroll gap-6">
+            {[...galleryImages, ...galleryImages].map((image, index) => (
+              <div
+                key={`${image.id}-${index}`}
+                className="relative overflow-hidden rounded-xl w-72 md:w-96 aspect-square bg-gradient-to-br from-gray-900 to-blue-900 group cursor-pointer"
+              >
+                {/* Image Background */}
+                <div className="absolute inset-0">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={image.src}
+                    alt={image.alt}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                </div>
+
+                {/* Overlay */}
+                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-300" />
+
+                {/* Icon Placeholder (optional, only if image fails to load or as decoration? Keeping it hidden if image loads usually, but let's remove it if we have images, or keep effectively as overlay? 
+                   The previous code had the Mountain icon centrally. I'll remove it to showcase the image, or keep it if sources are missing. 
+                   Given the src property exists, I'll prioritize the image. I'll keep the text overlay.
+                */}
+
+                <div className="absolute top-4 right-4 bg-white/10 backdrop-blur-sm p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <Mountain className="h-5 w-5 text-white" />
+                </div>
+
+                <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent text-white translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                  <p className="font-bold text-lg mb-1">{image.alt}</p>
+                  <p className="text-sm text-primary font-medium tracking-wide uppercase">{image.category}</p>
+                </div>
               </div>
-              <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors" />
-              <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
-                <p className="font-semibold">{image.alt}</p>
-                <p className="text-sm text-gray-300 capitalize">{image.category}</p>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>

@@ -3,26 +3,11 @@
 import { ArrowRight, Compass, Shield, Users, Star } from 'lucide-react';
 import Button from '@/components/ui/button';
 import AnimatedButton from '@/components/ui/AnimatedButton';
-import { useState, useEffect } from 'react';
+// Removed unused imports: useState, useEffect
 import { useRouter } from 'next/navigation';
 
 export default function Hero() {
   const router = useRouter();
-  const [currentExpedition, setCurrentExpedition] = useState(0);
-
-  const expeditions = [
-    'Bandipur Tiger Reserve',
-    'Mudumalai Tiger Reserve',
-    'Kabini Tiger Reserve',
-    'Bhadra Tiger Reserve'
-  ];
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentExpedition((prev) => (prev + 1) % expeditions.length);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, [expeditions.length]);
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden" id="home">
@@ -39,7 +24,7 @@ export default function Hero() {
         <div className="max-w-5xl mx-auto">
           {/* Badge */}
           <div className="inline-flex items-center space-x-2 mb-8 px-6 py-3 bg-white/5 backdrop-blur-md border border-white/10 rounded-full hover:bg-white/10 transition-colors duration-300">
-            <Compass className="h-5 w-5 text-accent animate-spin-slow" />
+            <Compass className="h-5 w-5 text-accent" />
             <span className="font-medium uppercase tracking-[0.2em] text-xs text-gray-200">
               Trusted Since 2010 • 500+ Expeditions
             </span>
@@ -58,20 +43,11 @@ export default function Hero() {
             </span>
           </h1>
 
-          {/* Rotating Expedition */}
-          <div className="h-16 mb-12 overflow-hidden">
-            <div
-              className="transition-transform duration-700 ease-[cubic-bezier(0.23,1,0.32,1)]"
-              style={{ transform: `translateY(-${currentExpedition * 100}%)` }}
-            >
-              {expeditions.map((expedition, index) => (
-                <div key={index} className="h-16 flex items-center justify-center">
-                  <p className="text-2xl md:text-4xl font-light tracking-wide text-gray-200">
-                    Next: <span className="font-semibold text-accent border-b border-accent/50 pb-1">{expedition}</span>
-                  </p>
-                </div>
-              ))}
-            </div>
+          {/* Static Heading Subtitle (formerly rotating) */}
+          <div className="h-16 mb-12 flex items-center justify-center">
+            <p className="text-2xl md:text-3xl font-light tracking-wide text-gray-200">
+              Explore the <span className="font-semibold text-accent border-b border-accent/50 pb-1">Unexplored</span>
+            </p>
           </div>
 
           {/* Description */}

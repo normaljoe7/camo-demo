@@ -69,7 +69,7 @@ export default function ExpeditionDetailsPage() {
                         </div>
 
                         {/* Details "Card" Container */}
-                        <div className="relative bg-zinc-950/50 backdrop-blur-3xl border border-white/5 rounded-3xl p-8 md:p-10 overflow-hidden">
+                        <div className="relative bg-white/5 backdrop-blur-lg border border-white/10 rounded-3xl p-8 md:p-10 overflow-hidden">
                             {/* Subtle top shine */}
                             <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
 
@@ -97,7 +97,7 @@ export default function ExpeditionDetailsPage() {
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <Shield className="w-4 h-4 text-white/60" />
-                                    <span>Difficulty: <span className="text-white">{expedition.difficulty}</span></span>
+                                    <span>Category: <span className="text-white">{expedition.category}</span></span>
                                 </div>
                             </div>
 
@@ -111,8 +111,6 @@ export default function ExpeditionDetailsPage() {
                                         <h3 className="text-xl font-bold text-white">About the Journey</h3>
                                         <div className="w-12 h-0.5 bg-accent/50" />
                                         <p className="text-gray-400 leading-loose text-sm">
-                                            {expedition.description}
-                                            <br /><br />
                                             {expedition.fullDescription || expedition.description}
                                         </p>
                                     </div>
@@ -133,7 +131,7 @@ export default function ExpeditionDetailsPage() {
                                         <div className="space-y-4">
                                             <h3 className="text-xl font-bold text-white">Safari Experience</h3>
                                             <div className="w-12 h-0.5 bg-accent/50" />
-                                            <p className="text-gray-400 leading-loose text-sm">
+                                            <p className="text-gray-400 leading-loose text-sm whitespace-pre-line">
                                                 {expedition.safariExperience}
                                             </p>
                                         </div>
@@ -197,14 +195,19 @@ export default function ExpeditionDetailsPage() {
                                     )}
 
                                     {/* What's Included */}
-                                    <div>
-                                        <h3 className="text-sm font-bold uppercase tracking-widest text-white mb-4">Inclusions</h3>
-                                        <ul className="space-y-2">
-                                            <li className="text-xs text-gray-400 flex items-center gap-2"><Check className="w-3 h-3 text-white/40" /> Professional Guide</li>
-                                            <li className="text-xs text-gray-400 flex items-center gap-2"><Check className="w-3 h-3 text-white/40" /> All Equipment</li>
-                                            <li className="text-xs text-gray-400 flex items-center gap-2"><Check className="w-3 h-3 text-white/40" /> Meals & Permits</li>
-                                        </ul>
-                                    </div>
+                                    {expedition.inclusions && (
+                                        <div>
+                                            <h3 className="text-sm font-bold uppercase tracking-widest text-white mb-4">Inclusions</h3>
+                                            <ul className="space-y-2">
+                                                {expedition.inclusions.map((inc, idx) => (
+                                                    <li key={idx} className="text-xs text-gray-400 flex items-center gap-2">
+                                                        <Check className="w-3 h-3 text-white/40" />
+                                                        {inc}
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    )}
 
                                     {/* Exclusions */}
                                     {expedition.exclusions && (
@@ -240,7 +243,7 @@ export default function ExpeditionDetailsPage() {
                     {/* RIGHT COLUMN: Booking Card */}
                     <div className="lg:col-span-1 relative h-full z-30">
                         <div className="sticky top-24">
-                            <div className="bg-zinc-950/80 backdrop-blur-xl border border-white/10 rounded-3xl p-6 shadow-2xl relative overflow-hidden group">
+                            <div className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-3xl p-6 shadow-2xl relative overflow-hidden group">
                                 {/* Ambient Glow */}
                                 <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-white/5 blur-[100px] rounded-full pointer-events-none -mr-20 -mt-20" />
 
@@ -308,8 +311,8 @@ export default function ExpeditionDetailsPage() {
                                             <Shield className="w-3 h-3 text-white" />
                                         </div>
                                         <div>
-                                            <p className="text-[10px] text-gray-500 uppercase tracking-wider">Level</p>
-                                            <p className="text-sm text-white font-medium">{expedition.difficulty}</p>
+                                            <p className="text-[10px] text-gray-500 uppercase tracking-wider">Category</p>
+                                            <p className="text-sm text-white font-medium">{expedition.category}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -338,9 +341,11 @@ export default function ExpeditionDetailsPage() {
             </div>
 
             {/* Close calendar on click outside */}
-            {isCalendarOpen && (
-                <div className="fixed inset-0 z-10" onClick={() => setIsCalendarOpen(false)} />
-            )}
-        </main>
+            {
+                isCalendarOpen && (
+                    <div className="fixed inset-0 z-10" onClick={() => setIsCalendarOpen(false)} />
+                )
+            }
+        </main >
     );
 }

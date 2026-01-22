@@ -5,7 +5,13 @@ import Button from '@/components/ui/button';
 import { expeditions } from '@/lib/constants';
 import Card from '@/components/ui/card';
 
-export default function Expeditions() {
+interface ExpeditionsProps {
+  limit?: number;
+}
+
+export default function Expeditions({ limit }: ExpeditionsProps) {
+  const displayedExpeditions = limit ? expeditions.slice(0, limit) : expeditions;
+
   return (
     <section className="section-padding bg-transparent" id="expeditions">
       <div className="container-custom">
@@ -25,7 +31,7 @@ export default function Expeditions() {
 
         {/* Expeditions Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-          {expeditions.map((expedition) => (
+          {displayedExpeditions.map((expedition) => (
             <Link href={`/expeditions/${slugify(expedition.title)}`} key={expedition.id} className="block h-full">
               <Card className="group transition-all duration-300 h-full">
                 <div className="relative overflow-hidden rounded-t-xl h-48 group">
@@ -45,7 +51,7 @@ export default function Expeditions() {
                   )}
                   <div className="absolute top-4 right-4 z-10">
                     <span className="px-3 py-1 bg-black/50 backdrop-blur-md rounded-full text-xs font-semibold text-white border border-white/10">
-                      {expedition.difficulty}
+                      {expedition.category}
                     </span>
                   </div>
                 </div>

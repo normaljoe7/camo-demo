@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { X } from 'lucide-react';
+import { X, Calendar, Clock, Camera, Aperture, Info } from 'lucide-react';
 
 import { galleryImages } from '@/lib/constants';
 
@@ -43,7 +43,75 @@ export default function GalleryPage() {
                     >
                         <X className="w-10 h-10" />
                     </button>
-                    <img src={selectedImage} alt="Fullscreen" className="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl" />
+                    <img src={selectedImage} alt="Fullscreen" className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl" />
+
+                    {(() => {
+                        const activeImage = galleryImages.find(img => img.src === selectedImage);
+                        if (!activeImage) return null;
+
+                        return (
+                            <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 bg-black/80 backdrop-blur-md rounded-2xl p-6 border border-white/10 flex flex-nowrap gap-6 md:gap-10 items-center animate-slide-up max-w-[90vw] overflow-x-auto">
+                                {/* Date */}
+                                <div className="flex items-center gap-3 min-w-max">
+                                    <div className="p-2.5 bg-white/5 rounded-full border border-white/5">
+                                        <Calendar className="w-5 h-5 text-accent" />
+                                    </div>
+                                    <div>
+                                        <p className="text-[10px] text-gray-400 uppercase tracking-widest font-medium">Date</p>
+                                        <p className="text-sm font-bold text-white font-mono">{activeImage.date || 'Unknown'}</p>
+                                    </div>
+                                </div>
+                                <div className="w-px h-8 bg-white/10 hidden md:block" />
+
+                                {/* Time */}
+                                <div className="flex items-center gap-3 min-w-max">
+                                    <div className="p-2.5 bg-white/5 rounded-full border border-white/5">
+                                        <Clock className="w-5 h-5 text-accent" />
+                                    </div>
+                                    <div>
+                                        <p className="text-[10px] text-gray-400 uppercase tracking-widest font-medium">Time</p>
+                                        <p className="text-sm font-bold text-white font-mono">{activeImage.time || 'Unknown'}</p>
+                                    </div>
+                                </div>
+                                <div className="w-px h-8 bg-white/10 hidden md:block" />
+
+                                {/* Camera */}
+                                <div className="flex items-center gap-3 min-w-max">
+                                    <div className="p-2.5 bg-white/5 rounded-full border border-white/5">
+                                        <Camera className="w-5 h-5 text-accent" />
+                                    </div>
+                                    <div>
+                                        <p className="text-[10px] text-gray-400 uppercase tracking-widest font-medium">Device</p>
+                                        <p className="text-sm font-bold text-white">{activeImage.camera || 'Unknown'}</p>
+                                    </div>
+                                </div>
+                                <div className="w-px h-8 bg-white/10 hidden md:block" />
+
+                                {/* Lens */}
+                                <div className="flex items-center gap-3 min-w-max">
+                                    <div className="p-2.5 bg-white/5 rounded-full border border-white/5">
+                                        <Aperture className="w-5 h-5 text-accent" />
+                                    </div>
+                                    <div>
+                                        <p className="text-[10px] text-gray-400 uppercase tracking-widest font-medium">Lens</p>
+                                        <p className="text-sm font-bold text-white">{activeImage.lens || 'Unknown'}</p>
+                                    </div>
+                                </div>
+                                <div className="w-px h-8 bg-white/10 hidden md:block" />
+
+                                {/* Settings */}
+                                <div className="flex items-center gap-3 min-w-max">
+                                    <div className="p-2.5 bg-white/5 rounded-full border border-white/5">
+                                        <Info className="w-5 h-5 text-accent" />
+                                    </div>
+                                    <div>
+                                        <p className="text-[10px] text-gray-400 uppercase tracking-widest font-medium">Settings</p>
+                                        <p className="text-sm font-bold text-white font-mono">{activeImage.settings || 'Auto'}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        );
+                    })()}
                 </div>
             )}
         </div>

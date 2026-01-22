@@ -99,6 +99,7 @@ export default function AdminLoginPage() {
                             disabled={isLoading}
                             icon={ArrowRight}
                             tooltipText={isLoading ? 'Verifying...' : 'Access Dashboard'}
+                            type="submit"
                             onClick={() => { }}
                         >
                             {isLoading ? 'Verifying...' : 'Access Dashboard'}

@@ -9,7 +9,7 @@ export interface Expedition {
     description: string;
     fullDescription?: string; // Added for detail page
     duration: string;
-    difficulty: string;
+    category: string;
     price: string;
     discountedPrice?: string; // Added for discounts
     season: string;
@@ -23,6 +23,7 @@ export interface Expedition {
     safariExperience?: string;
     safariTimings?: string;
     packages?: { name: string; price: string; desc: string }[];
+    inclusions?: string[];
     exclusions?: string[];
     policy?: string;
 }
