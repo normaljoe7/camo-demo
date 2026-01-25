@@ -43,7 +43,7 @@ export default function About() {
             </div>
             <div className="p-6 bg-black/20 border border-white/10 rounded-xl">
               <Compass className="h-8 w-8 text-primary mb-4" />
-              <h3 className="text-xl font-bold text-white mb-2">4 Destinations</h3>
+              <h3 className="text-xl font-bold text-white mb-2">9 Destinations</h3>
               <p className="text-gray-300 text-sm">Beyond Observation. A Refined Wild Experience.</p>
             </div>
             <div className="p-6 bg-black/20 border border-white/10 rounded-xl">

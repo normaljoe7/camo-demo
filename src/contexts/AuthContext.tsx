@@ -15,6 +15,7 @@ interface AuthContextType {
   user: User | null;
   isLoggedIn: boolean;
   login: (role?: 'user' | 'admin', completedExpeditions?: number) => void;
+  signup: (name: string, email: string, password: string) => void;
   logout: () => void;
   isLoading: boolean;
 }
@@ -47,6 +48,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     localStorage.setItem('mock_user_session', JSON.stringify(mockUser));
   };
 
+  const signup = (name: string, email: string, password: string) => {
+    const mockUser: User = {
+      id: Math.random().toString(36).substr(2, 9),
+      name: name,
+      email: email,
+      completedExpeditions: 0,
+      role: 'user'
+    };
+    setUser(mockUser);
+    localStorage.setItem('mock_user_session', JSON.stringify(mockUser));
+  };
+
   const logout = () => {
     setUser(null);
     localStorage.removeItem('mock_user_session');
@@ -57,6 +70,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       user,
       isLoggedIn: !!user,
       login,
+      signup,
       logout,
       isLoading
     }}>

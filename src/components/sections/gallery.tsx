@@ -1,7 +1,13 @@
+'use client';
+
 import { galleryImages } from '@/lib/constants';
-import { Mountain } from 'lucide-react';
+import { Mountain, ArrowRight } from 'lucide-react';
+import AnimatedButton from '@/components/ui/AnimatedButton';
+import { useRouter } from 'next/navigation';
 
 export default function Gallery() {
+  const router = useRouter();
+
   return (
     <section className="section-padding bg-transparent" id="gallery">
       <div className="container-custom">
@@ -40,11 +46,6 @@ export default function Gallery() {
                 {/* Overlay */}
                 <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-300" />
 
-                {/* Icon Placeholder (optional, only if image fails to load or as decoration? Keeping it hidden if image loads usually, but let's remove it if we have images, or keep effectively as overlay? 
-                   The previous code had the Mountain icon centrally. I'll remove it to showcase the image, or keep it if sources are missing. 
-                   Given the src property exists, I'll prioritize the image. I'll keep the text overlay.
-                */}
-
                 <div className="absolute top-4 right-4 bg-white/10 backdrop-blur-sm p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <Mountain className="h-5 w-5 text-white" />
                 </div>
@@ -56,6 +57,18 @@ export default function Gallery() {
               </div>
             ))}
           </div>
+        </div>
+
+        {/* View All Button */}
+        <div className="flex justify-center mt-12 bg-transparent">
+          <AnimatedButton
+            variant="white"
+            onClick={() => router.push('/gallery')}
+            className="border border-white/20 bg-transparent text-white hover:bg-white/10"
+            icon={ArrowRight}
+          >
+            View Full Gallery
+          </AnimatedButton>
         </div>
       </div>
     </section>

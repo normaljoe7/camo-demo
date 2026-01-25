@@ -82,7 +82,7 @@ export default function SignupPage() {
       }
 
       // Signup using context
-      await signup(`${formData.firstName} ${formData.lastName}`, formData.email, formData.password);
+      signup(`${formData.firstName} ${formData.lastName}`, formData.email, formData.password);
 
       // Show success message
       setError('success:Account created successfully! Redirecting...');

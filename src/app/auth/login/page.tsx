@@ -40,7 +40,7 @@ export default function LoginPage() {
       }
 
       // Login using context
-      await login(formData.email, formData.password);
+      login('user');
 
       // Redirect is handled in login function, but we can do it here too as fallback/confirmation
       router.push('/account/dashboard');
