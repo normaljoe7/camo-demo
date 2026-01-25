@@ -33,85 +33,73 @@ export default function Expeditions({ limit }: ExpeditionsProps) {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           {displayedExpeditions.map((expedition) => (
             <Link href={`/expeditions/${slugify(expedition.title)}`} key={expedition.id} className="block h-full">
-              <Card className="group transition-all duration-300 h-full">
-                <div className="relative overflow-hidden rounded-t-xl h-48 group">
+              <Card className="group relative h-[450px] overflow-hidden border-none shadow-xl cursor-pointer">
+                {/* Image Background */}
+                <div className="absolute inset-0">
                   {expedition.image ? (
-                    <div className="w-full h-full relative">
-                      <img
-                        src={expedition.image}
-                        alt={expedition.title}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                      />
-                      <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors" />
-                    </div>
+                    <img
+                      src={expedition.image}
+                      alt={expedition.title}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 group-hover:brightness-75 brightness-90"
+                    />
                   ) : (
-                    <div className="h-full bg-gradient-to-br from-gray-900 to-blue-900 relative flex items-center justify-center">
-                      <Mountain className="h-20 w-20 text-white/30" />
+                    <div className="w-full h-full bg-gray-900 flex items-center justify-center">
+                      <Mountain className="h-20 w-20 text-white/20" />
                     </div>
                   )}
-                  <div className="absolute top-4 right-4 z-10">
-                    <span className="px-3 py-1 bg-black/50 backdrop-blur-md rounded-full text-xs font-semibold text-white border border-white/10">
-                      {expedition.category}
-                    </span>
-                  </div>
                 </div>
 
-                {/* Card Content */}
-                <div className="p-6">
-                  <div className="flex justify-between items-start mb-4">
-                    <div>
-                      <h3 className="text-xl font-bold text-white mb-2">{expedition.title}</h3>
-                      <p className="text-gray-300 mb-4">{expedition.description}</p>
-                    </div>
-                  </div>
+                {/* Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-90 transition-opacity duration-300" />
 
-                  {/* Details */}
-                  <div className="grid grid-cols-2 gap-4 mb-6">
-                    <div className="flex items-center space-x-2">
-                      <Calendar className="h-4 w-4 text-primary" />
-                      <span className="text-sm text-gray-300">{expedition.duration}</span>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <Thermometer className="h-4 w-4 text-primary" />
-                      <span className="text-sm text-gray-300">{expedition.season}</span>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <Users className="h-4 w-4 text-primary" />
-                      <span className="text-sm text-gray-300">Small Groups</span>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <MapPin className="h-4 w-4 text-primary" />
-                      <span className="text-sm text-gray-300">Remote</span>
-                    </div>
-                  </div>
-
-                  {/* Highlights */}
-                  <div className="mb-6">
-                    <h4 className="text-sm font-semibold text-white mb-2">Highlights</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {expedition.highlights.map((highlight, idx) => (
-                        <span
-                          key={idx}
-                          className="px-3 py-1 bg-primary/20 text-primary rounded-full text-xs font-medium"
-                        >
-                          {highlight}
+                {/* Content Overlay */}
+                <div className="absolute inset-x-0 bottom-0 p-8 flex flex-col justify-end h-full">
+                  <div className="transform translate-y-8 group-hover:translate-y-0 transition-transform duration-300">
+                    {/* Top Badges */}
+                    <div className="flex items-center gap-2 mb-3 opacity-80 group-hover:opacity-100 transition-opacity duration-300">
+                      <span className="inline-block px-3 py-1 bg-white/20 text-white rounded-full text-[10px] font-bold uppercase tracking-wider backdrop-blur-md">
+                        {expedition.category}
+                      </span>
+                      {expedition.season && (
+                        <span className="inline-block px-3 py-1 bg-primary/80 text-white rounded-full text-[10px] font-bold uppercase tracking-wider backdrop-blur-md">
+                          {expedition.season}
                         </span>
-                      ))}
+                      )}
                     </div>
-                  </div>
 
-                  {/* Price & CTA */}
-                  <div className="flex items-center justify-between pt-4 border-t border-white/10">
-                    <div>
-                      <span className="text-2xl font-bold text-white">{expedition.price}</span>
-                      <span className="text-gray-400 text-sm ml-2">per person</span>
+                    <h3 className="text-2xl font-bold text-white mb-2 leading-tight">
+                      {expedition.title}
+                    </h3>
+
+                    {/* Stats Row */}
+                    <div className="flex items-center gap-4 text-gray-300 text-sm mb-4">
+                      <div className="flex items-center gap-1.5">
+                        <Calendar className="w-3.5 h-3.5 text-primary" />
+                        <span>{expedition.duration}</span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <MapPin className="w-3.5 h-3.5 text-primary" />
+                        <span>{expedition.location || 'Remote'}</span>
+                      </div>
                     </div>
-                    <div className="inline-flex items-center justify-center rounded-xl font-semibold transition-all duration-300 bg-primary text-white hover:bg-primary/90 px-4 py-2 text-sm">
-                      Learn More
+
+                    {/* Description (Hidden by default, reveal on hover) */}
+                    <p className="text-gray-400 text-sm mb-4 line-clamp-2 opacity-0 group-hover:opacity-100 transition-all duration-300 h-0 group-hover:h-auto">
+                      {expedition.description}
+                    </p>
+
+                    {/* Footer / CTA */}
+                    <div className="flex items-center justify-between pt-4 border-t border-white/20 opacity-60 group-hover:opacity-100 transition-opacity duration-300">
+                      <div>
+                        <p className="text-xs text-gray-400 uppercase tracking-widest">Starting From</p>
+                        <p className="text-lg font-bold text-white">{expedition.price}</p>
+                      </div>
+                      <span className="inline-flex items-center justify-center rounded-lg bg-white/10 hover:bg-white/20 text-white px-4 py-2 text-xs font-bold uppercase tracking-wider transition-colors backdrop-blur-sm">
+                        Explore
+                      </span>
                     </div>
                   </div>
                 </div>
-
               </Card>
             </Link>
           ))}

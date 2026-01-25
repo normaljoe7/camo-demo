@@ -3,17 +3,19 @@
 import { useEffect, useState } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useExpeditions, Expedition } from '@/contexts/ExpeditionContext';
+import { useGallery } from '@/contexts/GalleryContext';
 import { useRouter } from 'next/navigation';
-import { Plus, Edit, Trash, Pause, Play, LogOut, Package, Percent, Settings } from 'lucide-react';
+import { Plus, Edit, Trash, Pause, Play, LogOut, Package, Percent, Image as ImageIcon, Check, X } from 'lucide-react';
 import AnimatedButton from '@/components/ui/AnimatedButton';
 import ExpeditionForm from '@/components/admin/ExpeditionForm';
 
 export default function AdminDashboard() {
     const { user, logout, isLoading } = useAuth();
     const { expeditions, deleteExpedition, toggleStatus, addExpedition, updateExpedition, applyDiscount } = useExpeditions();
+    const { pendingImages, approveImage, rejectImage } = useGallery();
     const router = useRouter();
 
-    const [view, setView] = useState<'list' | 'settings'>('list');
+    const [view, setView] = useState<'list' | 'settings' | 'gallery'>('list');
     const [showForm, setShowForm] = useState(false);
     const [editingExpedition, setEditingExpedition] = useState<Expedition | undefined>(undefined);
 
@@ -24,17 +26,22 @@ export default function AdminDashboard() {
     });
 
     useEffect(() => {
-        if (!isLoading && (!user || !user.isAdmin)) {
-            router.push('/admin-login');
+        // Enforce admin access
+        if (!isLoading && (!user || user.role !== 'admin')) {
+            router.push('/');
         }
-    }, [user, isLoading, router]);
+    }, [user, router, isLoading]);
 
-    if (isLoading || !user?.isAdmin) {
+    if (isLoading) {
         return (
             <div className="min-h-screen flex items-center justify-center bg-black">
                 <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-white"></div>
             </div>
         );
+    }
+
+    if (!user || user.role !== 'admin') {
+        return null; // Will redirect via useEffect
     }
 
     const handleEdit = (expedition: Expedition) => {
@@ -85,6 +92,18 @@ export default function AdminDashboard() {
                         <Percent className="inline-block mr-2 h-4 w-4" /> Discounts
                     </button>
                     <button
+                        onClick={() => setView('gallery')}
+                        className={`px-4 py-2 rounded-lg transition-colors ${view === 'gallery' ? 'bg-white text-black' : 'bg-black/40 text-gray-400 hover:text-white'} relative`}
+                    >
+                        <ImageIcon className="inline-block mr-2 h-4 w-4" />
+                        Gallery
+                        {pendingImages.length > 0 && (
+                            <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-[10px] text-white font-bold">
+                                {pendingImages.length}
+                            </span>
+                        )}
+                    </button>
+                    <button
                         onClick={logout}
                         className="px-4 py-2 rounded-lg bg-red-500/10 text-red-400 hover:bg-red-500 hover:text-white transition-colors border border-red-500/20"
                     >
@@ -93,7 +112,49 @@ export default function AdminDashboard() {
                 </div>
             </div>
 
-            {view === 'settings' ? (
+            {view === 'gallery' ? (
+                <div className="animate-fade-in space-y-6">
+                    <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
+                        <ImageIcon className="h-6 w-6 text-accent" /> Pending Uploads
+                    </h2>
+
+                    {pendingImages.length === 0 ? (
+                        <div className="text-center py-20 bg-black/20 rounded-2xl border border-white/5">
+                            <p className="text-gray-400">No pending images to review.</p>
+                        </div>
+                    ) : (
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {pendingImages.map((img) => (
+                                <div key={img.id} className="bg-black/40 backdrop-blur-md border border-white/10 rounded-2xl overflow-hidden p-4">
+                                    <div className="aspect-video bg-black/50 rounded-lg overflow-hidden mb-4">
+                                        <img src={img.src} alt={img.alt} className="w-full h-full object-contain" />
+                                    </div>
+                                    <div className="flex justify-between items-start mb-4">
+                                        <div>
+                                            <p className="text-white font-bold">{img.uploadedBy}</p>
+                                            <p className="text-xs text-gray-400">{img.date}</p>
+                                        </div>
+                                    </div>
+                                    <div className="flex gap-2">
+                                        <button
+                                            onClick={() => approveImage(img.id)}
+                                            className="flex-1 py-2 bg-green-500/20 text-green-400 hover:bg-green-500 hover:text-white rounded-lg transition-colors flex items-center justify-center gap-2 font-medium"
+                                        >
+                                            <Check className="w-4 h-4" /> Approve
+                                        </button>
+                                        <button
+                                            onClick={() => rejectImage(img.id)}
+                                            className="flex-1 py-2 bg-red-500/20 text-red-400 hover:bg-red-500 hover:text-white rounded-lg transition-colors flex items-center justify-center gap-2 font-medium"
+                                        >
+                                            <X className="w-4 h-4" /> Reject
+                                        </button>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    )}
+                </div>
+            ) : view === 'settings' ? (
                 <div className="animate-fade-in bg-black/40 backdrop-blur-md border border-white/10 rounded-2xl p-8 max-w-2xl mx-auto">
                     <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
                         <Percent className="h-6 w-6 text-accent" /> Global Discount Manager

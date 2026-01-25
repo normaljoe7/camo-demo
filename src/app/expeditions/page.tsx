@@ -9,7 +9,8 @@ import Card from '@/components/ui/card';
 
 export default function ExpeditionsPage() {
     const { expeditions } = useExpeditions();
-    const activeExpeditions = expeditions.filter(e => e.status === 'active');
+    // Show all expeditions, sorting active first
+    const visibleExpeditions = [...expeditions].sort((a, b) => (a.status === 'active' ? -1 : 1));
 
     return (
         <div className="min-h-screen pt-24 pb-20">
@@ -23,63 +24,90 @@ export default function ExpeditionsPage() {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {activeExpeditions.map((exp) => (
-                        <Link key={exp.id} href={`/expeditions/${slugify(exp.title)}`} className="group">
-                            <div className="bg-secondary/20 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden hover:border-white/30 transition-all duration-300 h-full flex flex-col">
-                                <div className="h-64 overflow-hidden relative">
+                    {visibleExpeditions.map((exp) => (
+                        <Link key={exp.id} href={`/expeditions/${slugify(exp.title)}`} className="block h-full animate-fade-in-up">
+                            <Card className={`group relative h-[450px] overflow-hidden border-none shadow-xl cursor-pointer ${exp.status === 'paused' ? 'grayscale opacity-70' : ''}`}>
+                                {/* Image Background */}
+                                <div className="absolute inset-0">
                                     <img
                                         src={exp.image}
                                         alt={exp.title}
-                                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 group-hover:brightness-75 brightness-90"
                                     />
-                                    {exp.discountedPrice && (
-                                        <div className="absolute top-4 right-4 bg-red-600 text-white font-bold px-3 py-1 rounded shadow-lg">
+                                    {exp.status === 'paused' && (
+                                        <div className="absolute inset-0 bg-black/40 flex items-center justify-center z-30">
+                                            <span className="px-4 py-2 bg-black/80 text-white font-bold text-xl uppercase tracking-widest border border-white/20 rounded-xl backdrop-blur-md">
+                                                Coming Soon
+                                            </span>
+                                        </div>
+                                    )}
+                                    {exp.status === 'active' && exp.discountedPrice && (
+                                        <div className="absolute top-4 right-4 z-20 bg-red-600 text-white text-[10px] font-bold px-3 py-1 rounded shadow-lg">
                                             SALE
                                         </div>
                                     )}
                                 </div>
 
-                                <div className="p-6 flex-1 flex flex-col">
-                                    <div className="flex justify-between items-start mb-4">
-                                        <h2 className="text-2xl font-bold text-white group-hover:text-accent transition-colors">
-                                            {exp.title}
-                                        </h2>
-                                    </div>
+                                {/* Gradient Overlay */}
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/60 to-transparent opacity-90 transition-opacity duration-300" />
 
-                                    <div className="space-y-3 mb-6 flex-1">
-                                        <div className="flex items-center text-gray-400 text-sm">
-                                            <MapPin className="w-4 h-4 mr-2 text-accent" />
-                                            {exp.location || 'Remote Location'}
-                                        </div>
-                                        <div className="flex items-center text-gray-400 text-sm">
-                                            <Clock className="w-4 h-4 mr-2 text-accent" />
-                                            {exp.duration}
-                                        </div>
-                                        <div className="flex items-center text-gray-400 text-sm">
-                                            <DollarSign className="w-4 h-4 mr-2 text-accent" />
-                                            {exp.discountedPrice ? (
-                                                <span className="flex gap-2 items-center">
-                                                    <span className="line-through opacity-60">{exp.price}</span>
-                                                    <span className="text-white font-bold text-lg">{exp.discountedPrice}</span>
+                                {/* Content Overlay */}
+                                <div className="absolute inset-x-0 bottom-0 p-8 flex flex-col justify-end h-full pointer-events-none">
+                                    <div className="transform translate-y-8 group-hover:translate-y-0 transition-transform duration-300 pointer-events-auto">
+                                        {/* Top Badges */}
+                                        <div className="flex items-center gap-2 mb-3 opacity-80 group-hover:opacity-100 transition-opacity duration-300">
+                                            <span className="inline-block px-3 py-1 bg-white/20 text-white rounded-full text-[10px] font-bold uppercase tracking-wider backdrop-blur-md">
+                                                {exp.category}
+                                            </span>
+                                            {exp.season && (
+                                                <span className="inline-block px-3 py-1 bg-primary/80 text-white rounded-full text-[10px] font-bold uppercase tracking-wider backdrop-blur-md">
+                                                    {exp.season}
                                                 </span>
-                                            ) : (
-                                                <span className="text-white font-bold text-lg">{exp.price}</span>
                                             )}
                                         </div>
-                                    </div>
 
-                                    <div className="mt-auto">
-                                        <span className="inline-block w-full text-center py-3 rounded-lg border border-white/20 text-white group-hover:bg-white group-hover:text-black transition-all font-medium">
-                                            Explore Expedition
-                                        </span>
+                                        <h2 className="text-2xl font-bold text-white mb-2 leading-tight">
+                                            {exp.title}
+                                        </h2>
+
+                                        {/* Stats Row */}
+                                        <div className="flex items-center gap-4 text-gray-300 text-sm mb-4">
+                                            <div className="flex items-center gap-1.5">
+                                                <MapPin className="w-3.5 h-3.5 text-accent" />
+                                                <span>{exp.location || 'Remote'}</span>
+                                            </div>
+                                        </div>
+
+                                        {/* Description */}
+                                        <p className="text-gray-400 text-sm mb-4 line-clamp-2 opacity-0 group-hover:opacity-100 transition-all duration-300 h-0 group-hover:h-auto">
+                                            {exp.description}
+                                        </p>
+
+                                        {/* Footer / CTA */}
+                                        <div className="flex items-center justify-between pt-4 border-t border-white/20 opacity-60 group-hover:opacity-100 transition-opacity duration-300">
+                                            <div>
+                                                <p className="text-xs text-gray-400 uppercase tracking-widest">Starting From</p>
+                                                {exp.discountedPrice ? (
+                                                    <div className="flex items-center gap-2">
+                                                        <span className="text-lg font-bold text-white">{exp.discountedPrice}</span>
+                                                        <span className="text-xs text-gray-500 line-through">{exp.price}</span>
+                                                    </div>
+                                                ) : (
+                                                    <p className="text-lg font-bold text-white">{exp.price}</p>
+                                                )}
+                                            </div>
+                                            <span className="inline-flex items-center justify-center rounded-lg bg-white/10 hover:bg-white/20 text-white px-4 py-2 text-xs font-bold uppercase tracking-wider transition-colors backdrop-blur-sm">
+                                                Explore
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </Card>
                         </Link>
                     ))}
                 </div>
 
-                {activeExpeditions.length === 0 && (
+                {visibleExpeditions.length === 0 && (
                     <div className="text-center py-20 bg-white/5 rounded-2xl border border-white/10">
                         <p className="text-gray-400 text-xl">No active expeditions at the moment. Check back soon!</p>
                     </div>

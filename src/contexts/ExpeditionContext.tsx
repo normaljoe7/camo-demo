@@ -11,6 +11,8 @@ export interface Expedition {
     duration: string;
     category: string;
     price: string;
+    priceIndian?: string; // Added for separate pricing
+    priceForeign?: string; // Added for separate pricing
     discountedPrice?: string; // Added for discounts
     season: string;
     image: string;
@@ -18,6 +20,7 @@ export interface Expedition {
     gallery?: string[]; // Added for detail page
     location?: string; // Added for detail page
     status: 'active' | 'paused'; // Added for admin
+    pauseReason?: string; // Added for paused state explanation
     availableDates?: string[]; // Added for booking
     floraFauna?: string;
     safariExperience?: string;
@@ -52,9 +55,10 @@ export function ExpeditionProvider({ children }: { children: ReactNode }) {
             ...exp,
             fullDescription: exp.description, // Default if missing
             gallery: [exp.image],
-            location: 'Unknown Location',
+            location: exp.location || 'Unknown Location',
             status: 'active' as const,
-            price: exp.price.replace(/,/g, ''), // Ensure clean number string if needed, currently keeping string format but will need parsing for math
+            // price cleanup handled effectively by the component/display logic usually, but here:
+            price: exp.price,
         }));
         setExpeditions(enriched);
         // }
@@ -102,7 +106,7 @@ export function ExpeditionProvider({ children }: { children: ReactNode }) {
 
             return {
                 ...e,
-                discountedPrice: `$${newPriceNum.toFixed(0)}`
+                discountedPrice: `₹${newPriceNum.toLocaleString('en-IN')}`
             };
         }));
     };

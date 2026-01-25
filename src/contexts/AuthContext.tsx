@@ -1,24 +1,22 @@
-// src/contexts/AuthContext.tsx
 'use client';
 
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { useRouter } from 'next/navigation';
 
-interface User {
+// Mock User Interface
+export interface User {
   id: string;
   name: string;
   email: string;
-  avatar?: string;
-  isAdmin?: boolean;
+  completedExpeditions: number; // 0 means new user, >0 means experienced
+  role: 'user' | 'admin';
 }
 
 interface AuthContextType {
   user: User | null;
-  isLoading: boolean;
-  login: (email: string, password: string) => Promise<void>;
-  signup: (name: string, email: string, password: string) => Promise<void>;
+  isLoggedIn: boolean;
+  login: (role?: 'user' | 'admin', completedExpeditions?: number) => void;
   logout: () => void;
-  updateUser: (userData: Partial<User>) => void;
+  isLoading: boolean;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -26,116 +24,42 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const router = useRouter();
 
-  // Load user from localStorage on mount
+  // Initial mock load
   useEffect(() => {
-    const storedUser = localStorage.getItem('camoscapes_user');
+    // Check localStorage for persisted mock session
+    const storedUser = localStorage.getItem('mock_user_session');
     if (storedUser) {
-      try {
-        setUser(JSON.parse(storedUser));
-      } catch (error) {
-        console.error('Error parsing user data:', error);
-        localStorage.removeItem('camoscapes_user');
-      }
+      setUser(JSON.parse(storedUser));
     }
     setIsLoading(false);
   }, []);
 
-  // Login function
-  const login = async (email: string, password: string) => {
-    setIsLoading(true);
-    try {
-      // Simulate API delay
-      await new Promise(resolve => setTimeout(resolve, 800));
-
-      // Admin Logic
-      if (email === 'admin@expedition.com' && password === 'admin123') {
-        const adminUser: User = {
-          id: 'admin',
-          name: 'Expedition Admin',
-          email: email,
-          avatar: 'https://ui-avatars.com/api/?name=Admin',
-          isAdmin: true
-        };
-        setUser(adminUser);
-        localStorage.setItem('camoscapes_user', JSON.stringify(adminUser));
-        router.push('/admin');
-        return;
-      }
-
-      // Regular User Logic (Mock)
-      if (!email || !password) {
-        throw new Error('Please enter email and password');
-      }
-
-      const mockUser: User = {
-        id: '1',
-        name: 'John Adventurer',
-        email: email,
-        avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=${email}`,
-        isAdmin: false
-      };
-
-      setUser(mockUser);
-      localStorage.setItem('camoscapes_user', JSON.stringify(mockUser));
-
-      // Redirect to dashboard
-      router.push('/account/dashboard');
-
-    } catch (error) {
-      throw error;
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  // Mock signup function
-  const signup = async (name: string, email: string, password: string) => {
-    setIsLoading(true);
-    try {
-      await new Promise(resolve => setTimeout(resolve, 1000));
-
-      if (!name || !email || !password) {
-        throw new Error('Please fill all fields');
-      }
-
-      const mockUser: User = {
-        id: Date.now().toString(),
-        name: name,
-        email: email,
-        avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=${email}`,
-        isAdmin: false
-      };
-
-      setUser(mockUser);
-      localStorage.setItem('camoscapes_user', JSON.stringify(mockUser));
-
-      router.push('/account/dashboard');
-
-    } catch (error) {
-      throw error;
-    } finally {
-      setIsLoading(false);
-    }
+  const login = (role: 'user' | 'admin' = 'user', completedExpeditions: number = 0) => {
+    const mockUser: User = {
+      id: '1',
+      name: role === 'admin' ? 'Admin User' : 'John Doe',
+      email: 'user@example.com',
+      completedExpeditions: completedExpeditions,
+      role: role
+    };
+    setUser(mockUser);
+    localStorage.setItem('mock_user_session', JSON.stringify(mockUser));
   };
 
   const logout = () => {
     setUser(null);
-    localStorage.removeItem('camoscapes_user');
-    router.push('/');
-  };
-
-  const updateUser = (userData: Partial<User>) => {
-    if (user) {
-      const updatedUser = { ...user, ...userData };
-      setUser(updatedUser);
-      localStorage.setItem('camoscapes_user', JSON.stringify(updatedUser));
-    }
+    localStorage.removeItem('mock_user_session');
   };
 
   return (
-    <AuthContext.Provider value={{ user, isLoading, login, signup, logout, updateUser }}>
+    <AuthContext.Provider value={{
+      user,
+      isLoggedIn: !!user,
+      login,
+      logout,
+      isLoading
+    }}>
       {children}
     </AuthContext.Provider>
   );

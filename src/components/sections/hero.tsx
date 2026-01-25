@@ -84,7 +84,7 @@ export default function Hero() {
             <div className="text-center group">
               <div className="flex flex-col items-center justify-center mb-2 group-hover:transform group-hover:scale-110 transition-transform duration-300">
                 <Compass className="h-8 w-8 text-accent mb-3" />
-                <span className="text-4xl font-bold text-white">4</span>
+                <span className="text-4xl font-bold text-white">9</span>
               </div>
               <p className="text-gray-400 text-xs uppercase tracking-wider">Destinations</p>
             </div>

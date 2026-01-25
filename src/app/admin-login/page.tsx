@@ -22,21 +22,16 @@ export default function AdminLoginPage() {
         setError('');
         setIsLoading(true);
 
-        try {
-            if (formData.email !== 'admin@expedition.com' || formData.password !== 'admin123') {
-                // Let the context handle validation, or just fail here if we want strictly frontend check
-                // But context `login` handles checking credentials.
-                // However, context login checks: if (email === 'admin@expedition.com' && password === 'admin123')
+        // Simulate network delay
+        setTimeout(() => {
+            if (formData.email === 'admin@expedition.com' && formData.password === 'admin123') {
+                login('admin');
+                router.push('/admin');
+            } else {
+                setError('Invalid admin credentials');
+                setIsLoading(false);
             }
-
-            await login(formData.email, formData.password);
-            // Login context redirects to /admin if successful admin login
-
-        } catch (err) {
-            setError('Invalid admin credentials');
-        } finally {
-            setIsLoading(false);
-        }
+        }, 1000);
     };
 
     return (
@@ -98,11 +93,11 @@ export default function AdminLoginPage() {
                             className="w-full bg-red-600 hover:bg-red-700 text-white border-none"
                             disabled={isLoading}
                             icon={ArrowRight}
-                            tooltipText={isLoading ? 'Verifying...' : 'Access Dashboard'}
+                            tooltipText={isLoading ? 'Verifying...' : 'Login to Dashboard'}
                             type="submit"
                             onClick={() => { }}
                         >
-                            {isLoading ? 'Verifying...' : 'Access Dashboard'}
+                            {isLoading ? 'Verifying...' : 'Login to Dashboard'}
                         </AnimatedButton>
                     </form>
                 </Card>

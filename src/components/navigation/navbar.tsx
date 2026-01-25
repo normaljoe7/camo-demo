@@ -8,7 +8,7 @@ import Image from 'next/image';
 import { useRouter, usePathname } from 'next/navigation';
 import Button from '@/components/ui/button';
 import AnimatedButton from '@/components/ui/AnimatedButton';
-import { useAuth } from '@/contexts/AuthContext'; // ADD THIS IMPORT
+import { useAuth } from '@/contexts/AuthContext';
 
 export default function Navbar() {
   const router = useRouter();
@@ -234,7 +234,7 @@ export default function Navbar() {
             <div className="flex items-center space-x-4">
               {/* User Account Section */}
               <div className="relative user-menu">
-                {user ? ( // CHANGE: isLoggedIn → user
+                {user ? (
                   <>
                     <button
                       onClick={() => setUserMenuOpen(!userMenuOpen)}
@@ -243,7 +243,7 @@ export default function Navbar() {
                       <div className="p-2 bg-white/20 rounded-full">
                         <User className="h-5 w-5" />
                       </div>
-                      <span className="text-sm font-medium">{user.name.split(' ')[0]}</span> {/* CHANGE: Use actual user name */}
+                      <span className="text-sm font-medium">{user.name.split(' ')[0]}</span>
                     </button>
 
                     {/* User Dropdown Menu */}
@@ -255,12 +255,12 @@ export default function Navbar() {
                         </div>
 
                         <Link
-                          href={user.isAdmin ? "/admin" : "/account/dashboard"}
+                          href={user.role === 'admin' ? "/admin" : "/account/dashboard"}
                           className="flex items-center space-x-2 px-4 py-3 text-gray-300 hover:bg-white/10 transition-colors"
                           onClick={() => setUserMenuOpen(false)}
                         >
                           <User className="h-4 w-4" />
-                          <span>{user.isAdmin ? "Admin Dashboard" : "My Dashboard"}</span>
+                          <span>{user.role === 'admin' ? "Admin Dashboard" : "My Dashboard"}</span>
                         </Link>
 
                         <Link
@@ -270,15 +270,6 @@ export default function Navbar() {
                         >
                           <Calendar className="h-4 w-4" />
                           <span>My Trips</span>
-                        </Link>
-
-                        <Link
-                          href="/account/settings"
-                          className="flex items-center space-x-2 px-4 py-3 text-gray-300 hover:bg-white/10 transition-colors"
-                          onClick={() => setUserMenuOpen(false)}
-                        >
-                          <Settings className="h-4 w-4" />
-                          <span>Account Settings</span>
                         </Link>
 
                         <div className="border-t border-white/10 mt-2 pt-2">
@@ -302,8 +293,8 @@ export default function Navbar() {
                       variant="white"
                       size="sm"
                       icon={LogIn}
-                      tooltipText="Sign in to your account"
-                      onClick={() => router.push('/auth/login')} // CHANGE: This stays the same
+                      tooltipText="Sign in"
+                      onClick={() => router.push('/auth/login')}
                     >
                       Log In
                     </AnimatedButton>
@@ -311,8 +302,8 @@ export default function Navbar() {
                       variant="white"
                       size="sm"
                       icon={UserPlus}
-                      tooltipText="Create your adventure account"
-                      onClick={() => router.push('/auth/signup')} // CHANGE: Go to signup page, not auto-login
+                      tooltipText="Create account"
+                      onClick={() => router.push('/auth/signup')}
                     >
                       Sign Up
                     </AnimatedButton>

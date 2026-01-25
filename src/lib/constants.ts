@@ -6,7 +6,8 @@ export const expeditions = [
     description: 'Step into one of South India’s most celebrated tiger landscapes. Bandipur offers vast open forests, thriving predator-prey dynamics, and cinematic wildlife encounters that unfold naturally without rush, noise, or crowds. Bandipur is not just about sightings it’s about scale, silence, and suspense. Vast open vistas allow long-distance animal tracking, while its well-protected corridors support natural predator-prey interactions. Every safari here carries the promise of a raw, cinematic wildlife encounter unfiltered and unforgettable.',
     duration: '14 days',
     category: 'South',
-    price: '$4,999',
+    location: 'Karnataka, India',
+    price: '₹45,000',
     season: 'June - August',
     image: '/images/bandipur1.png',
     highlights: ['Northern Lights', 'Ice Cave Exploration', 'Wildlife Safari'],
@@ -14,8 +15,8 @@ export const expeditions = [
     safariExperience: 'Guided jeep safaris led by expert naturalists, following ethical wildlife viewing practices with limited guests for a quiet, immersive experience',
     safariTimings: 'Morning: 6:00 AM - 9:00 AM | Evening: 3:00 PM - 6:00 PM',
     packages: [
-      { name: 'Standard Explorer', price: '$4,999', desc: 'Includes comfortable lodge stay and shared safaris.' },
-      { name: 'Premium Photographic', price: '$6,499', desc: 'Private jeep rights, luxury tented suite, and specialized photography guide.' }
+      { name: 'Standard Explorer', price: '₹45,000', desc: 'Includes comfortable lodge stay and shared safaris.' },
+      { name: 'Premium Photographic', price: '₹65,000', desc: 'Private jeep rights, luxury tented suite, and specialized photography guide.' }
     ],
     inclusions: ['Authorized Gypsy Safari', 'Forest Entry & Permit Fees', 'Driver & Guide Charges', 'Applicable Taxes'],
     exclusions: ['Travel to Bandipur (Pooling available at extra cost)', 'Personal Insurance', 'Tips & Gratuities', 'Alcoholic Beverages', 'International Flights', 'Camera Fees(if applicable)', 'Personal Expenses', 'Laundry'],
@@ -27,7 +28,8 @@ export const expeditions = [
     description: 'Step into one of South India’s most dynamic wildlife landscapes. Nestled within the Nilgiri Biosphere, Mudumalai Tiger Reserve is a thriving corridor connecting Bandipur, Nagarahole, and Wayanad. Known for its high wildlife density and open forest structure. Mudumalai delivers consistent, dramatic safari encounters. This is a forest alive with movement where elephants roam freely and predators follow ancient trails. ',
     duration: '10 days',
     category: 'South',
-    price: '$3,499',
+    location: 'Tamil Nadu, India',
+    price: '₹35,000',
     season: 'Year-round',
     image: '/images/mudumalai1.png',
     highlights: ['Canopy Walk', 'River Expeditions', 'Indigenous Culture'],
@@ -35,8 +37,8 @@ export const expeditions = [
     safariExperience: 'Guided jeep safaris led by experienced naturalists, following ethical wildlife viewing practices. Limited entries ensure a quiet, immersive experience with excellent visibility and frequent wildlife sightings',
     safariTimings: 'Morning: 6:00 AM - 9:00 AM | Evening: 3:00 PM - 6:00 PM',
     packages: [
-      { name: 'Jungle Scout', price: '$3,499', desc: 'Standard accommodation with daily safaris.' },
-      { name: 'Wild Luxe', price: '$4,299', desc: 'Treehouse stay with private naturalist.' }
+      { name: 'Jungle Scout', price: '₹35,000', desc: 'Standard accommodation with daily safaris.' },
+      { name: 'Wild Luxe', price: '₹42,000', desc: 'Treehouse stay with private naturalist.' }
     ],
     inclusions: ['Authorized Gypsy Safari', 'Forest Entry & Permit Fees', 'Driver & Guide Charges', 'Applicable Taxes'],
     exclusions: ['Travel to Mudumalai (Pooling available at extra cost)', 'Personal Insurance', 'Tips & Gratuities', 'Alcoholic Beverages', 'International Flights', 'Camera Fees(if applicable)', 'Personal Expenses', 'Laundry'],
@@ -48,7 +50,8 @@ export const expeditions = [
     description: 'Bhadra Tiger Reserve, located in the Western Ghats of Karnataka, offers a serene and authentic wildlife experience. Its dense forests, and rolling hills make it ideal for nature lovers seeking solitude and raw wilderness. Unlike busier tiger landscapes, Bhadra is known for its low-traffic safaris, making every drive feel exclusive perfect for those who value silence, anticipation, and authentic wildlife moments.',
     duration: '21 days',
     category: 'South',
-    price: '$5,999',
+    location: 'Karnataka, India',
+    price: '₹60,000',
     season: 'April - October',
     image: '/images/bhadra.png',
     highlights: ['Base Camp Visit', 'Mountain Passes', 'Local Monasteries'],
@@ -57,8 +60,8 @@ export const expeditions = [
 Evening Safari: Golden-hour drives featuring grazing herbivores and predator movement.`,
     safariTimings: 'Morning: 6:00 AM - 9:00 AM | Evening: 3:00 PM - 6:00 PM',
     packages: [
-      { name: 'Base Trek', price: '$5,999', desc: 'Guided trek with camping gear included.' },
-      { name: 'Summit Expedition', price: '$7,999', desc: 'Full summit support with oxygen and Sherpa team.' }
+      { name: 'Base Trek', price: '₹60,000', desc: 'Guided trek with camping gear included.' },
+      { name: 'Summit Expedition', price: '₹80,000', desc: 'Full summit support with oxygen and Sherpa team.' }
     ],
     inclusions: ['Authorized Gypsy Safari', 'Forest Entry & Permit Fees', 'Driver & Guide Charges', 'Applicable Taxes'],
     exclusions: ['Travel to Bhadra (Pooling available at extra cost)', 'Personal Insurance', 'Tips & Gratuities', 'Alcoholic Beverages', 'International Flights', 'Camera Fees(if applicable)', 'Personal Expenses', 'Laundry'],
@@ -70,6 +73,7 @@ Evening Safari: Golden-hour drives featuring grazing herbivores and predator mov
     description: 'Kabini, located along the backwaters of the Kabini River, is part of the renowned Nagarahole Tiger Reserve. It is known for dramatic landscapes, rich biodiversity, and exceptional wildlife sightings. Kabini is not just a safari destination it is an ecosystem where predator and prey coexist against a backdrop of water, wilderness, and silence broken only by the calls of the forest. This is where tigers walk the shores, elephants bathe at dusk, and leopards melt into the undergrowth.',
     duration: '8 days',
     category: 'South',
+    location: 'Karnataka, India',
     price: '$2,999',
     season: 'October - March',
     image: '/images/nagarhole1.png',
@@ -78,8 +82,8 @@ Evening Safari: Golden-hour drives featuring grazing herbivores and predator mov
     safariExperience: 'Morning Safari: Misty forest drives with high chances of predator movement and active birdlife. Evening Safari: Golden-hour drives with animals gathering near water bodies and dramatic sightings',
     safariTimings: 'Morning: 6:00 AM - 9:00 AM | Evening: 3:00 PM - 6:00 PM',
     packages: [
-      { name: 'River View', price: '$2,999', desc: 'Cottage facing the river with shared boat safari.' },
-      { name: 'Leopards Lair', price: '$3,899', desc: 'Luxury cottage with private jeep safari priority.' }
+      { name: 'River View', price: '₹30,000', desc: 'Cottage facing the river with shared boat safari.' },
+      { name: 'Leopards Lair', price: '₹38,000', desc: 'Luxury cottage with private jeep safari priority.' }
     ],
     inclusions: ['Authorized Gypsy Safari', 'Forest Entry & Permit Fees', 'Driver & Guide Charges', 'Applicable Taxes'],
     exclusions: ['Travel to Kabini (Pooling available at extra cost)', 'Personal Insurance', 'Tips & Gratuities', 'Alcoholic Beverages', 'International Flights', 'Camera Fees(if applicable)', 'Personal Expenses', 'Laundry'],
@@ -91,7 +95,10 @@ Evening Safari: Golden-hour drives featuring grazing herbivores and predator mov
     description: 'Nestled in the lush Terai Arc landscape of Uttar Pradesh, Pilibhit Tiger Reserve is a spectacular mosaic of dense sal forests, vast grasslands, and winding rivers. Known for its high tiger density and pristine ecosystems, Pilibhit offers a raw, immersive jungle experience unlike any other reserve in North India. Pilibhit is where nature feels untouched and sightings feel personal. Unlike heavily commercialized reserves, Pilibhit rewards patience with authentic jungle moments a tiger emerging from misty grasslands, deer herds grazing freely, or rare birds calling from wetlands.',
     duration: '6 days',
     category: 'North',
-    price: '$2,499',
+    location: 'Uttar Pradesh, India',
+    price: '₹25,000',
+    priceIndian: '₹25,000',
+    priceForeign: '₹45,000',
     season: 'November - June',
     image: '/images/pilibhit.png',
     highlights: ['Terai Grasslands', 'Swamp Deer', 'Bird Watching'],
@@ -99,8 +106,8 @@ Evening Safari: Golden-hour drives featuring grazing herbivores and predator mov
     safariExperience: 'Morning Safari: Early entry, active wildlife movement, misty landscapes, and excellent photography opportunities. Evening Safari: Golden-hour forest views, relaxed animal sightings, and serene jungle ambience.',
     safariTimings: 'Morning: 6:00 AM - 10:00 AM | Evening: 2:30 PM - 6:30 PM | Full day and Half day Safari’s available. Price on request.',
     packages: [
-      { name: 'Terai Trail', price: '$2,499', desc: 'Standard stay with shared jeep safaris.' },
-      { name: 'Swamp & Tiger', price: '$3,199', desc: 'Luxury cottage with private guide.' }
+      { name: 'Terai Trail', price: '₹25,000', desc: 'Standard stay with shared jeep safaris.' },
+      { name: 'Swamp & Tiger', price: '₹32,000', desc: 'Luxury cottage with private guide.' }
     ],
     inclusions: ['Authorized Gypsy Safari', 'Forest Entry & Permit Fees', 'Driver & Guide Charges', 'Applicable Taxes'],
     exclusions: ['Travel to Pilibhit (Pooling available at extra cost)', 'Personal Insurance', 'Tips & Gratuities', 'Alcoholic Beverages', 'International Flights', 'Camera Fees(if applicable)', 'Personal Expenses', 'Laundry', 'Tips and Gratuities'],
@@ -112,7 +119,10 @@ Evening Safari: Golden-hour drives featuring grazing herbivores and predator mov
     description: 'Nestled in the Vindhya ranges of Madhya Pradesh, Bandhavgarh Tiger Reserve is one of India’s most celebrated wildlife destinations. Once a royal hunting ground of the Maharajas of Rewa, the reserve today is globally renowned for having one of the highest densities of Royal Bengal Tigers in the country. Sprawling across dense forests, rocky hills, open grasslands, and ancient ruins, Bandhavgarh offers an immersive jungle experience where history, wilderness, and raw nature coexist in dramatic harmony.',
     duration: '5 days',
     category: 'North',
-    price: '$3,299',
+    location: 'Madhya Pradesh, India',
+    price: '₹32,000',
+    priceIndian: '₹32,000',
+    priceForeign: '₹55,000',
     season: 'October - June',
     image: '/images/bandhavgarh.png',
     highlights: ['Bandhavgarh Fort', 'Tiger Sightings', 'Ancient Caves'],
@@ -120,8 +130,8 @@ Evening Safari: Golden-hour drives featuring grazing herbivores and predator mov
     safariExperience: 'Morning Safari: Early hours offer fresh tracks, bird activity, and golden forest light. Evening Safari: Late afternoon safaris feature active wildlife and dramatic sunset landscapes.',
     safariTimings: 'Morning: 6:00 AM - 10:00 AM | Evening: 2:30 PM - 6:30 PM',
     packages: [
-      { name: 'Fort View', price: '$3,299', desc: 'Resort stay with buffer and core zone safaris.' },
-      { name: 'Royal Expedition', price: '$4,599', desc: 'Premium lodge with full-day safari options.' }
+      { name: 'Fort View', price: '₹32,000', desc: 'Resort stay with buffer and core zone safaris.' },
+      { name: 'Royal Expedition', price: '₹45,000', desc: 'Premium lodge with full-day safari options.' }
     ],
     inclusions: ['Authorized Gypsy Safari', 'Forest Entry & Permit Fees', 'Driver & Guide Charges', 'Applicable Taxes'],
     exclusions: ['Travel to Bandhavgarh (Pooling available at extra cost)', 'Personal Insurance', 'Tips & Gratuities', 'Alcoholic Beverages', 'International Flights', 'Camera Fees(if applicable)', 'Personal Expenses', 'Laundry', 'Tips and Gratuities'],
@@ -133,7 +143,10 @@ Evening Safari: Golden-hour drives featuring grazing herbivores and predator mov
     description: 'Pench Tiger Reserve is one of India’s most enchanting wildlife destinations, straddling the borders of Madhya Pradesh and Maharashtra. Famous for its rolling teak forests, open meadows, and the life-giving Pench River, this reserve is widely believed to have inspired Rudyard Kipling’s The Jungle Book. Pench offers a perfect balance of dense forest cover and open grasslands, making wildlife sightings frequent and rewarding. Its well-maintained safari zones, rich biodiversity, and scenic beauty make it a top choice for both first-time visitors and seasoned wildlife enthusiasts.',
     duration: '6 days',
     category: 'North',
-    price: '$2,899',
+    location: 'Madhya Pradesh, India',
+    price: '₹28,000',
+    priceIndian: '₹28,000',
+    priceForeign: '₹48,000',
     season: 'October - June',
     image: '/images/pench.png',
     highlights: ['Mowgli\'s Land', 'Leopard Sightings', 'Teak Forests'],
@@ -141,8 +154,8 @@ Evening Safari: Golden-hour drives featuring grazing herbivores and predator mov
     safariExperience: 'Morning Safari: Best for predator sightings, cool weather, golden sunrise. Evening Safari: Warm light, scenic sunsets, animal movement toward water bodies.',
     safariTimings: 'Morning: 6:00 AM - 10:00 AM | Evening: 2:30 PM - 6:30 PM',
     packages: [
-      { name: 'Mowgli Tour', price: '$2,899', desc: 'Standard accommodation with morning and evening drives.' },
-      { name: 'Jungle Book Special', price: '$3,699', desc: 'Luxury tented camp with night safari options in buffer zones.' }
+      { name: 'Mowgli Tour', price: '₹28,000', desc: 'Standard accommodation with morning and evening drives.' },
+      { name: 'Jungle Book Special', price: '₹36,000', desc: 'Luxury tented camp with night safari options in buffer zones.' }
     ],
     inclusions: ['Authorized Gypsy Safari', 'Forest Entry & Permit Fees', 'Driver & Guide Charges', 'Applicable Taxes'],
     exclusions: ['Travel to Pench (Pooling available at extra cost)', 'Personal Insurance', 'Tips & Gratuities', 'Alcoholic Beverages', 'International Flights', 'Camera Fees(if applicable)', 'Personal Expenses', 'Laundry', 'Tips and Gratuities'],
@@ -154,7 +167,10 @@ Evening Safari: Golden-hour drives featuring grazing herbivores and predator mov
     description: 'Nestled in the Vindhya mountain ranges, Panna Tiger Reserve is one of India’s most inspiring wildlife success stories. Once declared “tiger-less,” Panna has made a remarkable comeback through conservation efforts, emerging today as a thriving tiger habitat along the pristine Ken River. This reserve blends dramatic gorges, teak forests, open grasslands, and riverine ecosystems offering a safari experience that feels raw, scenic, and deeply immersive.',
     duration: '5 days',
     category: 'North',
-    price: '$2,699',
+    location: 'Madhya Pradesh, India',
+    price: '₹27,000',
+    priceIndian: '₹27,000',
+    priceForeign: '₹46,000',
     season: 'October - June',
     image: '/images/panna.png',
     highlights: ['Ken River', 'Vulture Sanctuary', 'Gharial Sightings'],
@@ -162,8 +178,8 @@ Evening Safari: Golden-hour drives featuring grazing herbivores and predator mov
     safariExperience: 'Panna offers a peaceful, less-crowded safari experience combined with dramatic river landscapes and tiger territory. The unique blend of wildlife, water bodies, cliffs, and forest silence makes every safari exclusive and deeply immersive',
     safariTimings: 'Morning: 6:30 AM - 10:30 AM | Evening: 2:30 PM - 6:30 PM',
     packages: [
-      { name: 'River Side', price: '$2,699', desc: 'Cottage near Ken river with boat safari included.' },
-      { name: 'Diamond Tour', price: '$3,499', desc: 'Luxury resort with private jeep access.' }
+      { name: 'River Side', price: '₹27,000', desc: 'Cottage near Ken river with boat safari included.' },
+      { name: 'Diamond Tour', price: '₹35,000', desc: 'Luxury resort with private jeep access.' }
     ],
     inclusions: ['Authorized Gypsy Safari', 'Forest Entry & Permit Fees', 'Driver & Guide Charges', 'Applicable Taxes'],
     exclusions: ['Travel to Panna (Pooling available at extra cost)', 'Personal Insurance', 'Tips & Gratuities', 'Alcoholic Beverages', 'International Flights', 'Camera Fees(if applicable)', 'Personal Expenses', 'Laundry', 'Tips and Gratuities'],
@@ -175,7 +191,10 @@ Evening Safari: Golden-hour drives featuring grazing herbivores and predator mov
     description: 'Tadoba Andhari Tiger Reserve (TATR), Maharashtra’s oldest and most celebrated tiger reserve, is a land where wilderness still reigns supreme. Nestled in the Chandrapur district, Tadoba is famed for its exceptionally high tiger sightings, raw forest landscapes, and dramatic encounters with India’s apex predators. With a mix of dense teak forests, bamboo thickets, open meadows, rocky cliffs, and tranquil lakes, Tadoba offers an immersive jungle experience that feels untamed, intense, and thrilling making it one of India’s most sought-after safari destinations.',
     duration: '4 days',
     category: 'North',
-    price: '$2,999',
+    location: 'Maharashtra, India',
+    price: '₹30,000',
+    priceIndian: '₹30,000',
+    priceForeign: '₹50,000',
     season: 'October - June',
     image: '/images/tadoba.png',
     highlights: ['Bamboo Forests', 'Sloth Bears', 'Lake Safaris'],
@@ -183,8 +202,8 @@ Evening Safari: Golden-hour drives featuring grazing herbivores and predator mov
     safariExperience: 'Morning Safari: Early forest entry, fresh pugmarks, excellent photography light. Evening Safari: Golden-hour sightings, tigers near water bodies, dramatic jungle views',
     safariTimings: 'Morning: 6:00 AM - 10:00 AM | Evening: 2:30 PM - 6:30 PM',
     packages: [
-      { name: 'Bamboo Grove', price: '$2,999', desc: 'Comfortable stay with zone-specific safaris.' },
-      { name: 'Tiger Trail', price: '$3,899', desc: 'Premium lodge with guaranteed core zone entry.' }
+      { name: 'Bamboo Grove', price: '₹30,000', desc: 'Comfortable stay with zone-specific safaris.' },
+      { name: 'Tiger Trail', price: '₹38,000', desc: 'Premium lodge with guaranteed core zone entry.' }
     ],
     inclusions: ['Authorized Gypsy Safari', 'Forest Entry & Permit Fees', 'Driver & Guide Charges', 'Applicable Taxes'],
     exclusions: ['Travel to Tadoba (Pooling available at extra cost)', 'Personal Insurance', 'Tips & Gratuities', 'Alcoholic Beverages', 'International Flights', 'Camera Fees(if applicable)', 'Personal Expenses', 'Laundry', 'Tips and Gratuities'],
