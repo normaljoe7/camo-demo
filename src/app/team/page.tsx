@@ -7,20 +7,20 @@ const teamMembers = [
     {
         name: "Syed Yaseen",
         role: "Lead Guide",
-        bio: "Wildlife specialist, photographer and captain",
-        image: "https://images.unsplash.com/photo-1519058082700-08a0b56da9b4?auto=format&fit=crop&q=80&w=800"
+        bio: "Big Cat Tracking Specialist with 10+ years of Field Experience in Wildlife Safaris. Expert in reading animal behavior, pugmarks, and movement patterns to deliver ethical, authentic big cat encounters. Driven by precision, patience, and deep respect for the wild.",
+        image: "/images/yaseen.jpeg"
     },
     {
         name: "Mohammad Nouman",
         role: "Expedition Planner",
-        bio: "Big Cat enthusiast and aspiring wildlife photographer",
-        image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=800"
+        bio: "Tiger Enthusiast with years of experience in habitat and behavioural understanding. Aspiring wildlife photographer. An Expedition Planner specializing in tiger behavior and habitat intelligence designing safaris based on how the forest truly works, not chance.",
+        image: "/images/nouman.png"
     },
     {
-        name: "Syeda Zaiba Naiyer",
-        role: "Host and Customer Relationshipm Manager",
-        bio: "Orchestrating complex supply chains to keep our teams well-equipped and moving.",
-        image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800"
+        name: "Syeda Zeba Naiyer",
+        role: "Customer Relationship Manager",
+        bio: "Customer Support and Relationship Manager known for her calm approach, thoughtful communication, and solution-focused mindset. Inspired by the precision and patience of wildlife expeditions, she guides every customer journey with clarity, care, and confidence.",
+        image: "/images/zeba.jpeg"
     }
 ];
 

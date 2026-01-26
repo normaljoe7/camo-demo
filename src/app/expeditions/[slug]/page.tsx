@@ -1,7 +1,8 @@
 'use client';
 
-import { useParams, notFound } from 'next/navigation';
+import { useParams, notFound, useRouter } from 'next/navigation';
 import { useExpeditions } from '@/contexts/ExpeditionContext';
+import { useCart } from '@/contexts/CartContext';
 import { slugify } from '@/lib/utils';
 import { Calendar, MapPin, Thermometer, Users, Check, ArrowLeft, Shield, Star } from 'lucide-react';
 import Link from 'next/link';
@@ -13,6 +14,8 @@ import Toast from '@/components/ui/toast';
 
 export default function ExpeditionDetailsPage() {
     const params = useParams();
+    const router = useRouter();
+    const { addToCart } = useCart();
     const { expeditions } = useExpeditions();
     const slug = params.slug as string;
     const [date, setDate] = useState<Date | null>(null);
@@ -21,6 +24,7 @@ export default function ExpeditionDetailsPage() {
     const [selectedPlannedDate, setSelectedPlannedDate] = useState('');
     const [nationality, setNationality] = useState<'indian' | 'foreign'>('indian');
     const [selectedPackage, setSelectedPackage] = useState<number | null>(null);
+    const [passengers, setPassengers] = useState(1);
     const [toast, setToast] = useState<{ msg: string; type: 'info' | 'error' | 'success'; show: boolean }>({ msg: '', type: 'info', show: false });
 
     // Helper to show toast
@@ -68,7 +72,20 @@ export default function ExpeditionDetailsPage() {
                         {/* Hero Image Section */}
                         <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-white/10 aspect-video group">
                             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10" />
-                            <img src={expedition.image} alt={expedition.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                            {/* @ts-ignore - video might not be in interface yet */}
+                            {expedition.video ? (
+                                <video
+                                    /* @ts-ignore */
+                                    src={expedition.video}
+                                    className="w-full h-full object-cover"
+                                    autoPlay
+                                    muted
+                                    loop
+                                    playsInline
+                                />
+                            ) : (
+                                <img src={expedition.image} alt={expedition.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                            )}
 
                             {/* Tags floating on image (Top Left) */}
                             <div className="absolute top-6 left-6 z-20 flex gap-2">
@@ -91,7 +108,6 @@ export default function ExpeditionDetailsPage() {
                                     Verified Expedition
                                 </span>
                                 <span className="h-px w-8 bg-white/10" />
-                                <span className="text-xs text-gray-500 uppercase tracking-wide">Since 2010</span>
                             </div>
 
                             {/* Title */}
@@ -259,35 +275,34 @@ export default function ExpeditionDetailsPage() {
                                             <div className="flex justify-between items-start mb-4">
                                                 <div>
                                                     <p className="text-xs font-medium text-gray-400 uppercase tracking-widest mb-2">Starting From</p>
-                                                    <div className="flex items-baseline gap-3">
+                                                    <div className="flex flex-col gap-1">
                                                         <span className="text-4xl font-serif text-white">
-                                                            {expedition.category === 'North' && nationality === 'indian'
+                                                            {nationality === 'indian'
                                                                 ? (expedition.priceIndian || expedition.price)
-                                                                : expedition.category === 'North' && nationality === 'foreign'
-                                                                    ? (expedition.priceForeign || expedition.price)
-                                                                    : expedition.price
+                                                                : (expedition.priceForeign || expedition.price)
                                                             }
+                                                        </span>
+                                                        <span className="text-sm text-gray-400 italic font-light">
+                                                            / person / day
                                                         </span>
                                                     </div>
                                                 </div>
 
-                                                {/* Nationality Toggle - Only for North */}
-                                                {expedition.category === 'North' && (
-                                                    <div className="flex p-1 bg-white/5 rounded-lg">
-                                                        <button
-                                                            onClick={() => setNationality('indian')}
-                                                            className={`px-3 py-1 text-[10px] font-bold uppercase tracking-wider rounded-md transition-all ${nationality === 'indian' ? 'bg-white text-black' : 'text-gray-400 hover:text-white'}`}
-                                                        >
-                                                            Indian
-                                                        </button>
-                                                        <button
-                                                            onClick={() => setNationality('foreign')}
-                                                            className={`px-3 py-1 text-[10px] font-bold uppercase tracking-wider rounded-md transition-all ${nationality === 'foreign' ? 'bg-white text-black' : 'text-gray-400 hover:text-white'}`}
-                                                        >
-                                                            Foreigner
-                                                        </button>
-                                                    </div>
-                                                )}
+                                                {/* Nationality Toggle */}
+                                                <div className="flex p-1 bg-white/5 rounded-lg">
+                                                    <button
+                                                        onClick={() => setNationality('indian')}
+                                                        className={`px-3 py-1 text-[10px] font-bold uppercase tracking-wider rounded-md transition-all ${nationality === 'indian' ? 'bg-white text-black' : 'text-gray-400 hover:text-white'}`}
+                                                    >
+                                                        Indian
+                                                    </button>
+                                                    <button
+                                                        onClick={() => setNationality('foreign')}
+                                                        className={`px-3 py-1 text-[10px] font-bold uppercase tracking-wider rounded-md transition-all ${nationality === 'foreign' ? 'bg-white text-black' : 'text-gray-400 hover:text-white'}`}
+                                                    >
+                                                        Foreigner
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
 
@@ -305,6 +320,29 @@ export default function ExpeditionDetailsPage() {
                                             >
                                                 Custom Date
                                             </button>
+                                        </div>
+
+                                        {/* Passenger Selection */}
+                                        <div className="space-y-2 mb-6 relative z-10">
+                                            <label className="text-xs text-gray-400 uppercase tracking-widest font-bold ml-1">Number of Travellers</label>
+                                            <div className="flex items-center gap-4 bg-white/5 border border-white/10 rounded-xl p-3 px-4">
+                                                <button
+                                                    onClick={() => setPassengers(Math.max(1, passengers - 1))}
+                                                    className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
+                                                    disabled={passengers <= 1}
+                                                >
+                                                    -
+                                                </button>
+                                                <span className="flex-1 text-center font-bold text-white">{passengers}</span>
+                                                <button
+                                                    onClick={() => setPassengers(Math.min(8, passengers + 1))}
+                                                    className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
+                                                    disabled={passengers >= 8}
+                                                >
+                                                    +
+                                                </button>
+                                            </div>
+                                            <p className="text-[10px] text-gray-500 text-center">Maximum 8 passengers per booking</p>
                                         </div>
 
                                         {/* Date Inputs based on Mode */}
@@ -437,14 +475,30 @@ export default function ExpeditionDetailsPage() {
                                                     variant="solid"
                                                     onClick={() => {
                                                         if (!selectedPlannedDate) {
-                                                            alert('Please select a date first');
+                                                            showToast('Please select a date first', 'error');
                                                             return;
                                                         }
-                                                        alert(`Booking initiated for ${selectedPlannedDate}`);
+
+                                                        const priceStr = nationality === 'indian'
+                                                            ? (expedition.priceIndian || expedition.price)
+                                                            : (expedition.priceForeign || expedition.price);
+                                                        const priceVal = parseInt(priceStr.replace(/[^0-9]/g, ''));
+
+                                                        addToCart({
+                                                            expeditionId: expedition.id.toString(),
+                                                            expeditionTitle: expedition.title,
+                                                            expeditionImage: expedition.image,
+                                                            startDate: new Date(selectedPlannedDate),
+                                                            duration: expedition.duration,
+                                                            passengers: passengers,
+                                                            packageType: selectedPackage !== null && expedition.packages ? expedition.packages[selectedPackage].name : 'Standard',
+                                                            pricePerPerson: priceVal
+                                                        });
+                                                        router.push('/cart');
                                                     }}
                                                     disabled={!expedition.availableDates || expedition.availableDates.length === 0}
                                                 >
-                                                    Book This Date
+                                                    Add to Cart
                                                 </Button>
                                             ) : (
                                                 <Button
@@ -452,13 +506,29 @@ export default function ExpeditionDetailsPage() {
                                                     variant="solid"
                                                     onClick={() => {
                                                         if (!date) {
-                                                            alert('Please select a preferred date first');
+                                                            showToast('Please select a preferred date first', 'error');
                                                             return;
                                                         }
-                                                        alert(`Inquiry sent for custom date: ${formatDate(date)}`);
+
+                                                        const priceStr = nationality === 'indian'
+                                                            ? (expedition.priceIndian || expedition.price)
+                                                            : (expedition.priceForeign || expedition.price);
+                                                        const priceVal = parseInt(priceStr.replace(/[^0-9]/g, ''));
+
+                                                        addToCart({
+                                                            expeditionId: expedition.id.toString(),
+                                                            expeditionTitle: expedition.title,
+                                                            expeditionImage: expedition.image,
+                                                            startDate: date,
+                                                            duration: expedition.duration,
+                                                            passengers: passengers,
+                                                            packageType: selectedPackage !== null && expedition.packages ? expedition.packages[selectedPackage].name : 'Standard',
+                                                            pricePerPerson: priceVal
+                                                        });
+                                                        router.push('/cart');
                                                     }}
                                                 >
-                                                    Inquire Custom Trip
+                                                    Book Custom Trip
                                                 </Button>
                                             )}
                                         </div>

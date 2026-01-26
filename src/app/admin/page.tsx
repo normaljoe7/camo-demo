@@ -4,20 +4,25 @@ import { useEffect, useState } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useExpeditions, Expedition } from '@/contexts/ExpeditionContext';
 import { useGallery } from '@/contexts/GalleryContext';
+import { useBookings } from '@/contexts/BookingContext'; // Import
 import { useRouter } from 'next/navigation';
-import { Plus, Edit, Trash, Pause, Play, LogOut, Package, Percent, Image as ImageIcon, Check, X } from 'lucide-react';
+import { Plus, Edit, Trash, Pause, Play, LogOut, Package, Percent, Image as ImageIcon, Check, X, Calendar as CalendarIcon } from 'lucide-react';
 import AnimatedButton from '@/components/ui/AnimatedButton';
 import ExpeditionForm from '@/components/admin/ExpeditionForm';
+import CustomCalendar from '@/components/ui/custom-calendar';
 
 export default function AdminDashboard() {
     const { user, logout, isLoading } = useAuth();
     const { expeditions, deleteExpedition, toggleStatus, addExpedition, updateExpedition, applyDiscount } = useExpeditions();
     const { pendingImages, approveImage, rejectImage } = useGallery();
+    const { bookings } = useBookings(); // Real data
     const router = useRouter();
 
-    const [view, setView] = useState<'list' | 'settings' | 'gallery'>('list');
+    const [view, setView] = useState<'list' | 'settings' | 'gallery' | 'calendar'>('list');
     const [showForm, setShowForm] = useState(false);
     const [editingExpedition, setEditingExpedition] = useState<Expedition | undefined>(undefined);
+
+    const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
 
     const [discountForm, setDiscountForm] = useState({
         value: 0,
@@ -86,6 +91,12 @@ export default function AdminDashboard() {
                         <Package className="inline-block mr-2 h-4 w-4" /> Expeditions
                     </button>
                     <button
+                        onClick={() => setView('calendar')}
+                        className={`px-4 py-2 rounded-lg transition-colors ${view === 'calendar' ? 'bg-white text-black' : 'bg-black/40 text-gray-400 hover:text-white'}`}
+                    >
+                        <CalendarIcon className="inline-block mr-2 h-4 w-4" /> Calendar
+                    </button>
+                    <button
                         onClick={() => setView('settings')}
                         className={`px-4 py-2 rounded-lg transition-colors ${view === 'settings' ? 'bg-white text-black' : 'bg-black/40 text-gray-400 hover:text-white'}`}
                     >
@@ -112,7 +123,47 @@ export default function AdminDashboard() {
                 </div>
             </div>
 
-            {view === 'gallery' ? (
+            {view === 'calendar' ? (
+                <div className="animate-fade-in bg-black/40 backdrop-blur-md border border-white/10 rounded-2xl p-8 max-w-4xl mx-auto">
+                    <h2 className="text-2xl font-bold text-white mb-8 flex items-center gap-2">
+                        <CalendarIcon className="h-6 w-6 text-accent" /> Expedition Calendar
+                    </h2>
+                    <div className="flex flex-col md:flex-row gap-12">
+                        <div className="flex-shrink-0">
+                            <CustomCalendar
+                                mode="single"
+                                date={selectedDate}
+                                onChange={(d) => setSelectedDate(d)}
+                                markers={bookings.map(b => new Date(b.startDate))}
+                                className="bg-transparent border-white/5"
+                            />
+                        </div>
+                        <div className="flex-1">
+                            <h3 className="text-lg font-bold text-white mb-4">
+                                Bookings for {selectedDate?.toLocaleDateString()}
+                            </h3>
+                            <div className="space-y-4">
+                                {bookings.filter(b => new Date(b.startDate).toDateString() === selectedDate?.toDateString()).length > 0 ? (
+                                    bookings.filter(b => new Date(b.startDate).toDateString() === selectedDate?.toDateString()).map(booking => (
+                                        <div key={booking.id} className="bg-white/5 border border-white/10 p-4 rounded-xl">
+                                            <p className="font-bold text-accent">{booking.expeditionTitle}</p>
+                                            <p className="text-xs text-gray-400 mt-1 font-mono">
+                                                {new Date(booking.startDate).toLocaleDateString()} — {new Date(booking.endDate).toLocaleDateString()}
+                                            </p>
+                                            <div className="flex justify-between text-sm text-gray-300 mt-2 border-t border-white/5 pt-2">
+                                                <span>{booking.userName}</span>
+                                                <span>{booking.passengers} Travellers</span>
+                                            </div>
+                                        </div>
+                                    ))
+                                ) : (
+                                    <p className="text-gray-500 italic">No bookings for this date.</p>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ) : view === 'gallery' ? (
                 <div className="animate-fade-in space-y-6">
                     <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
                         <ImageIcon className="h-6 w-6 text-accent" /> Pending Uploads

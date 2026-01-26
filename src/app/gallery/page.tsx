@@ -114,6 +114,14 @@ export default function GalleryPage() {
                     })()}
                 </div>
             )}
+
+            {/* Copyright Disclaimer */}
+            <div className="container mx-auto px-4 py-8 mt-12 border-t border-white/5 text-center">
+                <p className="text-xs text-gray-500 uppercase tracking-wider">
+                    © {new Date().getFullYear()} Camoscapes Expeditions. All images are subject to copyright.
+                    Unauthorized use or reproduction is strictly prohibited.
+                </p>
+            </div>
         </div>
     );
 }

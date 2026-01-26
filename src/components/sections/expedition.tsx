@@ -86,7 +86,8 @@ export default function Expeditions({ limit }: ExpeditionsProps) {
                     <div className="flex items-center justify-between pt-4 border-t border-white/20 opacity-60 group-hover:opacity-100 transition-opacity duration-300">
                       <div>
                         <p className="text-xs text-gray-400 uppercase tracking-widest">Starting From</p>
-                        <p className="text-lg font-bold text-white">{expedition.price}</p>
+                        <p className="text-lg font-bold text-white leading-tight">{expedition.price}</p>
+                        <p className="text-[10px] text-gray-400 italic mt-0.5">/ person / day</p>
                       </div>
                       <span className="inline-flex items-center justify-center rounded-lg bg-white/10 hover:bg-white/20 text-white px-4 py-2 text-xs font-bold uppercase tracking-wider transition-colors backdrop-blur-sm">
                         Explore

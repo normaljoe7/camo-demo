@@ -26,7 +26,7 @@ export default function Hero() {
           <div className="inline-flex items-center space-x-2 mb-8 px-6 py-3 bg-white/5 backdrop-blur-md border border-white/10 rounded-full hover:bg-white/10 transition-colors duration-300">
             <Compass className="h-5 w-5 text-accent" />
             <span className="font-medium uppercase tracking-[0.2em] text-xs text-gray-200">
-              Trusted Since 2010 • 500+ Expeditions
+              Explore the Unexplored
             </span>
           </div>
 
@@ -46,7 +46,7 @@ export default function Hero() {
           {/* Static Heading Subtitle (formerly rotating) */}
           <div className="h-16 mb-12 flex items-center justify-center">
             <p className="text-2xl md:text-3xl font-light tracking-wide text-gray-200">
-              Explore the <span className="font-semibold text-accent border-b border-accent/50 pb-1">Unexplored</span>
+              Into the Camouflage of Untamed <span className="font-semibold text-accent border-b border-accent/50 pb-1">Wilderness</span>
             </p>
           </div>
 
@@ -77,9 +77,9 @@ export default function Hero() {
             <div className="text-center group">
               <div className="flex flex-col items-center justify-center mb-2 group-hover:transform group-hover:scale-110 transition-transform duration-300">
                 <Users className="h-8 w-8 text-accent mb-3" />
-                <span className="text-4xl font-bold text-white">5k+</span>
+                <span className="text-4xl font-bold text-white">10k+</span>
               </div>
-              <p className="text-gray-400 text-xs uppercase tracking-wider">Adventurers</p>
+              <p className="text-gray-400 text-xs uppercase tracking-wider">Safaris</p>
             </div>
             <div className="text-center group">
               <div className="flex flex-col items-center justify-center mb-2 group-hover:transform group-hover:scale-110 transition-transform duration-300">

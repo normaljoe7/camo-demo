@@ -7,6 +7,8 @@ import Footer from '@/components/navigation/footer';
 import { AuthProvider } from '@/contexts/AuthContext';
 import { ExpeditionProvider } from '@/contexts/ExpeditionContext';
 import { GalleryProvider } from '@/contexts/GalleryContext';
+import { BookingProvider } from '@/contexts/BookingContext';
+import { CartProvider } from '@/contexts/CartContext';
 import Starfield from '@/components/ui/starfield';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -27,10 +29,14 @@ export default function RootLayout({
         <AuthProvider>
           <GalleryProvider>
             <ExpeditionProvider>
-              <Starfield />
-              <Navbar />
-              <main>{children}</main>
-              <Footer />
+              <BookingProvider>
+                <CartProvider>
+                  <Starfield />
+                  <Navbar />
+                  <main>{children}</main>
+                  <Footer />
+                </CartProvider>
+              </BookingProvider>
             </ExpeditionProvider>
           </GalleryProvider>
         </AuthProvider>

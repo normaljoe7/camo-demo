@@ -17,7 +17,7 @@ export default function Footer() {
 
   const socialLinks = [
     { icon: Facebook, href: '#', label: 'Facebook' },
-    { icon: Instagram, href: '#', label: 'Instagram' },
+    { icon: Instagram, href: 'https://www.instagram.com/camo_scapes/', label: 'Instagram' },
     { icon: Twitter, href: '#', label: 'Twitter' },
     { icon: Youtube, href: '#', label: 'YouTube' },
   ];
@@ -42,7 +42,7 @@ export default function Footer() {
             </div>
             <p className="text-gray-400 mb-6">
               Professional expedition services to the world&apos;s most remote and breathtaking locations.
-              Safety, expertise, and unforgettable experiences since 2010.
+              Safety, expertise, and unforgettable experiences.
             </p>
             <div className="flex space-x-4">
               {socialLinks.map((social) => (

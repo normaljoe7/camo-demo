@@ -17,9 +17,11 @@ interface CustomCalendarProps {
     onChange?: (date: Date) => void; // For single mode
     onRangeChange?: (range: DateRange) => void; // For range mode
     className?: string;
+    markers?: Date[];
+    markerColor?: string;
 }
 
-export default function CustomCalendar({ date, dateRange, mode = 'single', onChange, onRangeChange, className }: CustomCalendarProps) {
+export default function CustomCalendar({ date, dateRange, mode = 'single', onChange, onRangeChange, className, markers, markerColor }: CustomCalendarProps) {
     const [viewDate, setViewDate] = useState(date || (dateRange?.from) || new Date());
 
     useEffect(() => {
@@ -127,6 +129,8 @@ export default function CustomCalendar({ date, dateRange, mode = 'single', onCha
             const selected = mode === 'single' ? isSelected(i) : (isRangeStart || isRangeEnd);
             const today = isToday(i);
 
+            const isMarker = markers?.some(m => isSameDay(m, new Date(currentYear, currentMonth, i)));
+
             days.push(
                 <button
                     key={i}
@@ -135,7 +139,7 @@ export default function CustomCalendar({ date, dateRange, mode = 'single', onCha
                         handleDateClick(i);
                     }}
                     className={cn(
-                        "w-8 h-8 flex items-center justify-center text-sm rounded-full transition-all relative z-10",
+                        "w-8 h-8 flex flex-col items-center justify-center text-sm rounded-full transition-all relative z-10",
                         selected ? "bg-white text-black font-bold shadow-lg" :
                             inRange ? "bg-white/20 text-white rounded-none" :
                                 "text-gray-300 hover:bg-white/10 hover:text-white",
@@ -146,6 +150,9 @@ export default function CustomCalendar({ date, dateRange, mode = 'single', onCha
                     )}
                 >
                     {i}
+                    {isMarker && (
+                        <div className={cn("absolute bottom-1 w-1 h-1 rounded-full", markerColor || "bg-red-500")} />
+                    )}
                 </button>
             );
         }

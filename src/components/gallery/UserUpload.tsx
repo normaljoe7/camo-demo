@@ -13,8 +13,8 @@ export default function UserUpload() {
     const [uploading, setUploading] = useState(false);
     const [success, setSuccess] = useState(false);
 
-    // Condition: Must be logged in AND completed at least 1 expedition
-    const canUpload = isLoggedIn && user && user.completedExpeditions > 0;
+    // Condition: Must be logged in AND (completed at least 1 expedition OR is admin)
+    const canUpload = isLoggedIn && user && (user.completedExpeditions > 0 || user.role === 'admin');
 
     if (!canUpload) return null;
 
