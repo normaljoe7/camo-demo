@@ -1,5 +1,5 @@
 import { slugify } from '@/lib/utils';
-import { Calendar, Mountain, Thermometer, Users, MapPin } from 'lucide-react';
+import { Mountain, Thermometer, Users, MapPin } from 'lucide-react';
 import Link from 'next/link';
 import Button from '@/components/ui/button';
 import { expeditions } from '@/lib/constants';
@@ -53,7 +53,7 @@ export default function Expeditions({ limit }: ExpeditionsProps) {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-90 transition-opacity duration-300" />
 
                 {/* Content Overlay */}
-                <div className="absolute inset-x-0 bottom-0 p-8 flex flex-col justify-end h-full">
+                <div className="absolute inset-x-0 bottom-0 px-8 pt-8 pb-12 flex flex-col justify-end h-full">
                   <div className="transform translate-y-8 group-hover:translate-y-0 transition-transform duration-300">
                     {/* Top Badges */}
                     <div className="flex items-center gap-2 mb-3 opacity-80 group-hover:opacity-100 transition-opacity duration-300">
@@ -73,20 +73,14 @@ export default function Expeditions({ limit }: ExpeditionsProps) {
 
                     {/* Stats Row */}
                     <div className="flex items-center gap-4 text-gray-300 text-sm mb-4">
-                      <div className="flex items-center gap-1.5">
-                        <Calendar className="w-3.5 h-3.5 text-primary" />
-                        <span>{expedition.duration}</span>
-                      </div>
+
                       <div className="flex items-center gap-1.5">
                         <MapPin className="w-3.5 h-3.5 text-primary" />
                         <span>{expedition.location || 'Remote'}</span>
                       </div>
                     </div>
 
-                    {/* Description (Hidden by default, reveal on hover) */}
-                    <p className="text-gray-400 text-sm mb-4 line-clamp-2 opacity-0 group-hover:opacity-100 transition-all duration-300 h-0 group-hover:h-auto">
-                      {expedition.description}
-                    </p>
+
 
                     {/* Footer / CTA */}
                     <div className="flex items-center justify-between pt-4 border-t border-white/20 opacity-60 group-hover:opacity-100 transition-opacity duration-300">

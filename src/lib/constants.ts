@@ -7,7 +7,7 @@ export const expeditions = [
     duration: '14 days',
     category: 'South',
     location: 'Karnataka, India',
-    price: '₹45,000',
+    price: '₹85,000',
     season: 'June - August',
     image: '/images/bandipur1.png',
     highlights: ['Northern Lights', 'Ice Cave Exploration', 'Wildlife Safari'],
@@ -15,8 +15,8 @@ export const expeditions = [
     safariExperience: 'Guided jeep safaris led by expert naturalists, following ethical wildlife viewing practices with limited guests for a quiet, immersive experience',
     safariTimings: 'Morning: 6:00 AM - 9:00 AM | Evening: 3:00 PM - 6:00 PM',
     packages: [
-      { name: 'Standard Explorer', price: '₹45,000', desc: 'Includes comfortable lodge stay and shared safaris.' },
-      { name: 'Premium Photographic', price: '₹65,000', desc: 'Private jeep rights, luxury tented suite, and specialized photography guide.' }
+      { name: 'Standard Explorer', price: '₹85,000', desc: 'Includes comfortable lodge stay and shared safaris.' },
+      { name: 'Premium Photographic', price: '₹105,000', desc: 'Private jeep rights, luxury tented suite, and specialized photography guide.' }
     ],
     inclusions: ['Authorized Gypsy Safari', 'Forest Entry & Permit Fees', 'Driver & Guide Charges', 'Applicable Taxes'],
     exclusions: ['Travel to Bandipur (Pooling available at extra cost)', 'Personal Insurance', 'Tips & Gratuities', 'Alcoholic Beverages', 'International Flights', 'Camera Fees(if applicable)', 'Personal Expenses', 'Laundry'],
@@ -29,7 +29,7 @@ export const expeditions = [
     duration: '10 days',
     category: 'South',
     location: 'Tamil Nadu, India',
-    price: '₹35,000',
+    price: '₹65,000',
     season: 'Year-round',
     image: '/images/mudumalai1.png',
     highlights: ['Canopy Walk', 'River Expeditions', 'Indigenous Culture'],
@@ -37,8 +37,8 @@ export const expeditions = [
     safariExperience: 'Guided jeep safaris led by experienced naturalists, following ethical wildlife viewing practices. Limited entries ensure a quiet, immersive experience with excellent visibility and frequent wildlife sightings',
     safariTimings: 'Morning: 6:00 AM - 9:00 AM | Evening: 3:00 PM - 6:00 PM',
     packages: [
-      { name: 'Jungle Scout', price: '₹35,000', desc: 'Standard accommodation with daily safaris.' },
-      { name: 'Wild Luxe', price: '₹42,000', desc: 'Treehouse stay with private naturalist.' }
+      { name: 'Jungle Scout', price: '₹65,000', desc: 'Standard accommodation with daily safaris.' },
+      { name: 'Wild Luxe', price: '₹75,000', desc: 'Treehouse stay with private naturalist.' }
     ],
     inclusions: ['Authorized Gypsy Safari', 'Forest Entry & Permit Fees', 'Driver & Guide Charges', 'Applicable Taxes'],
     exclusions: ['Travel to Mudumalai (Pooling available at extra cost)', 'Personal Insurance', 'Tips & Gratuities', 'Alcoholic Beverages', 'International Flights', 'Camera Fees(if applicable)', 'Personal Expenses', 'Laundry'],
@@ -51,7 +51,7 @@ export const expeditions = [
     duration: '21 days',
     category: 'South',
     location: 'Karnataka, India',
-    price: '₹60,000',
+    price: '₹95,000',
     season: 'April - October',
     image: '/images/bhadra.png',
     highlights: ['Base Camp Visit', 'Mountain Passes', 'Local Monasteries'],
@@ -60,8 +60,8 @@ export const expeditions = [
 Evening Safari: Golden-hour drives featuring grazing herbivores and predator movement.`,
     safariTimings: 'Morning: 6:00 AM - 9:00 AM | Evening: 3:00 PM - 6:00 PM',
     packages: [
-      { name: 'Base Trek', price: '₹60,000', desc: 'Guided trek with camping gear included.' },
-      { name: 'Summit Expedition', price: '₹80,000', desc: 'Full summit support with oxygen and Sherpa team.' }
+      { name: 'Base Trek', price: '₹95,000', desc: 'Guided trek with camping gear included.' },
+      { name: 'Summit Expedition', price: '₹115,000', desc: 'Full summit support with oxygen and Sherpa team.' }
     ],
     inclusions: ['Authorized Gypsy Safari', 'Forest Entry & Permit Fees', 'Driver & Guide Charges', 'Applicable Taxes'],
     exclusions: ['Travel to Bhadra (Pooling available at extra cost)', 'Personal Insurance', 'Tips & Gratuities', 'Alcoholic Beverages', 'International Flights', 'Camera Fees(if applicable)', 'Personal Expenses', 'Laundry'],
@@ -74,7 +74,7 @@ Evening Safari: Golden-hour drives featuring grazing herbivores and predator mov
     duration: '8 days',
     category: 'South',
     location: 'Karnataka, India',
-    price: '$2,999',
+    price: '₹75,000',
     season: 'October - March',
     image: '/images/nagarhole1.png',
     highlights: ['Oasis Camping', 'Star Gazing', 'Berber Culture'],
@@ -82,8 +82,8 @@ Evening Safari: Golden-hour drives featuring grazing herbivores and predator mov
     safariExperience: 'Morning Safari: Misty forest drives with high chances of predator movement and active birdlife. Evening Safari: Golden-hour drives with animals gathering near water bodies and dramatic sightings',
     safariTimings: 'Morning: 6:00 AM - 9:00 AM | Evening: 3:00 PM - 6:00 PM',
     packages: [
-      { name: 'River View', price: '₹30,000', desc: 'Cottage facing the river with shared boat safari.' },
-      { name: 'Leopards Lair', price: '₹38,000', desc: 'Luxury cottage with private jeep safari priority.' }
+      { name: 'River View', price: '₹75,000', desc: 'Cottage facing the river with shared boat safari.' },
+      { name: 'Leopards Lair', price: '₹95,000', desc: 'Luxury cottage with private jeep safari priority.' }
     ],
     inclusions: ['Authorized Gypsy Safari', 'Forest Entry & Permit Fees', 'Driver & Guide Charges', 'Applicable Taxes'],
     exclusions: ['Travel to Kabini (Pooling available at extra cost)', 'Personal Insurance', 'Tips & Gratuities', 'Alcoholic Beverages', 'International Flights', 'Camera Fees(if applicable)', 'Personal Expenses', 'Laundry'],
@@ -96,9 +96,9 @@ Evening Safari: Golden-hour drives featuring grazing herbivores and predator mov
     duration: '6 days',
     category: 'North',
     location: 'Uttar Pradesh, India',
-    price: '₹25,000',
-    priceIndian: '₹25,000',
-    priceForeign: '₹45,000',
+    price: '₹45,000',
+    priceIndian: '₹45,000',
+    priceForeign: '₹65,000',
     season: 'November - June',
     image: '/images/pilibhit.png',
     highlights: ['Terai Grasslands', 'Swamp Deer', 'Bird Watching'],
@@ -106,8 +106,8 @@ Evening Safari: Golden-hour drives featuring grazing herbivores and predator mov
     safariExperience: 'Morning Safari: Early entry, active wildlife movement, misty landscapes, and excellent photography opportunities. Evening Safari: Golden-hour forest views, relaxed animal sightings, and serene jungle ambience.',
     safariTimings: 'Morning: 6:00 AM - 10:00 AM | Evening: 2:30 PM - 6:30 PM | Full day and Half day Safari’s available. Price on request.',
     packages: [
-      { name: 'Terai Trail', price: '₹25,000', desc: 'Standard stay with shared jeep safaris.' },
-      { name: 'Swamp & Tiger', price: '₹32,000', desc: 'Luxury cottage with private guide.' }
+      { name: 'Terai Trail', price: '₹45,000', desc: 'Standard stay with shared jeep safaris.' },
+      { name: 'Swamp & Tiger', price: '₹55,000', desc: 'Luxury cottage with private guide.' }
     ],
     inclusions: ['Authorized Gypsy Safari', 'Forest Entry & Permit Fees', 'Driver & Guide Charges', 'Applicable Taxes'],
     exclusions: ['Travel to Pilibhit (Pooling available at extra cost)', 'Personal Insurance', 'Tips & Gratuities', 'Alcoholic Beverages', 'International Flights', 'Camera Fees(if applicable)', 'Personal Expenses', 'Laundry', 'Tips and Gratuities'],
@@ -120,9 +120,9 @@ Evening Safari: Golden-hour drives featuring grazing herbivores and predator mov
     duration: '5 days',
     category: 'North',
     location: 'Madhya Pradesh, India',
-    price: '₹32,000',
-    priceIndian: '₹32,000',
-    priceForeign: '₹55,000',
+    price: '₹62,000',
+    priceIndian: '₹62,000',
+    priceForeign: '₹85,000',
     season: 'October - June',
     image: '/images/bandhavgarh.png',
     highlights: ['Bandhavgarh Fort', 'Tiger Sightings', 'Ancient Caves'],
@@ -130,8 +130,8 @@ Evening Safari: Golden-hour drives featuring grazing herbivores and predator mov
     safariExperience: 'Morning Safari: Early hours offer fresh tracks, bird activity, and golden forest light. Evening Safari: Late afternoon safaris feature active wildlife and dramatic sunset landscapes.',
     safariTimings: 'Morning: 6:00 AM - 10:00 AM | Evening: 2:30 PM - 6:30 PM',
     packages: [
-      { name: 'Fort View', price: '₹32,000', desc: 'Resort stay with buffer and core zone safaris.' },
-      { name: 'Royal Expedition', price: '₹45,000', desc: 'Premium lodge with full-day safari options.' }
+      { name: 'Fort View', price: '₹62,000', desc: 'Resort stay with buffer and core zone safaris.' },
+      { name: 'Royal Expedition', price: '₹85,000', desc: 'Premium lodge with full-day safari options.' }
     ],
     inclusions: ['Authorized Gypsy Safari', 'Forest Entry & Permit Fees', 'Driver & Guide Charges', 'Applicable Taxes'],
     exclusions: ['Travel to Bandhavgarh (Pooling available at extra cost)', 'Personal Insurance', 'Tips & Gratuities', 'Alcoholic Beverages', 'International Flights', 'Camera Fees(if applicable)', 'Personal Expenses', 'Laundry', 'Tips and Gratuities'],
@@ -144,9 +144,9 @@ Evening Safari: Golden-hour drives featuring grazing herbivores and predator mov
     duration: '6 days',
     category: 'North',
     location: 'Madhya Pradesh, India',
-    price: '₹28,000',
-    priceIndian: '₹28,000',
-    priceForeign: '₹48,000',
+    price: '₹55,000',
+    priceIndian: '₹55,000',
+    priceForeign: '₹75,000',
     season: 'October - June',
     image: '/images/pench.png',
     highlights: ['Mowgli\'s Land', 'Leopard Sightings', 'Teak Forests'],
@@ -154,8 +154,8 @@ Evening Safari: Golden-hour drives featuring grazing herbivores and predator mov
     safariExperience: 'Morning Safari: Best for predator sightings, cool weather, golden sunrise. Evening Safari: Warm light, scenic sunsets, animal movement toward water bodies.',
     safariTimings: 'Morning: 6:00 AM - 10:00 AM | Evening: 2:30 PM - 6:30 PM',
     packages: [
-      { name: 'Mowgli Tour', price: '₹28,000', desc: 'Standard accommodation with morning and evening drives.' },
-      { name: 'Jungle Book Special', price: '₹36,000', desc: 'Luxury tented camp with night safari options in buffer zones.' }
+      { name: 'Mowgli Tour', price: '₹55,000', desc: 'Standard accommodation with morning and evening drives.' },
+      { name: 'Jungle Book Special', price: '₹75,000', desc: 'Luxury tented camp with night safari options in buffer zones.' }
     ],
     inclusions: ['Authorized Gypsy Safari', 'Forest Entry & Permit Fees', 'Driver & Guide Charges', 'Applicable Taxes'],
     exclusions: ['Travel to Pench (Pooling available at extra cost)', 'Personal Insurance', 'Tips & Gratuities', 'Alcoholic Beverages', 'International Flights', 'Camera Fees(if applicable)', 'Personal Expenses', 'Laundry', 'Tips and Gratuities'],
@@ -168,9 +168,9 @@ Evening Safari: Golden-hour drives featuring grazing herbivores and predator mov
     duration: '5 days',
     category: 'North',
     location: 'Madhya Pradesh, India',
-    price: '₹27,000',
-    priceIndian: '₹27,000',
-    priceForeign: '₹46,000',
+    price: '₹52,000',
+    priceIndian: '₹52,000',
+    priceForeign: '₹65,000',
     season: 'October - June',
     image: '/images/panna.png',
     highlights: ['Ken River', 'Vulture Sanctuary', 'Gharial Sightings'],
@@ -178,8 +178,8 @@ Evening Safari: Golden-hour drives featuring grazing herbivores and predator mov
     safariExperience: 'Panna offers a peaceful, less-crowded safari experience combined with dramatic river landscapes and tiger territory. The unique blend of wildlife, water bodies, cliffs, and forest silence makes every safari exclusive and deeply immersive',
     safariTimings: 'Morning: 6:30 AM - 10:30 AM | Evening: 2:30 PM - 6:30 PM',
     packages: [
-      { name: 'River Side', price: '₹27,000', desc: 'Cottage near Ken river with boat safari included.' },
-      { name: 'Diamond Tour', price: '₹35,000', desc: 'Luxury resort with private jeep access.' }
+      { name: 'River Side', price: '₹52,000', desc: 'Cottage near Ken river with boat safari included.' },
+      { name: 'Diamond Tour', price: '₹65,000', desc: 'Luxury resort with private jeep access.' }
     ],
     inclusions: ['Authorized Gypsy Safari', 'Forest Entry & Permit Fees', 'Driver & Guide Charges', 'Applicable Taxes'],
     exclusions: ['Travel to Panna (Pooling available at extra cost)', 'Personal Insurance', 'Tips & Gratuities', 'Alcoholic Beverages', 'International Flights', 'Camera Fees(if applicable)', 'Personal Expenses', 'Laundry', 'Tips and Gratuities'],
@@ -192,9 +192,9 @@ Evening Safari: Golden-hour drives featuring grazing herbivores and predator mov
     duration: '4 days',
     category: 'North',
     location: 'Maharashtra, India',
-    price: '₹30,000',
-    priceIndian: '₹30,000',
-    priceForeign: '₹50,000',
+    price: '₹60,000',
+    priceIndian: '₹60,000',
+    priceForeign: '₹75,000',
     season: 'October - June',
     image: '/images/tadoba.png',
     highlights: ['Bamboo Forests', 'Sloth Bears', 'Lake Safaris'],
@@ -202,8 +202,8 @@ Evening Safari: Golden-hour drives featuring grazing herbivores and predator mov
     safariExperience: 'Morning Safari: Early forest entry, fresh pugmarks, excellent photography light. Evening Safari: Golden-hour sightings, tigers near water bodies, dramatic jungle views',
     safariTimings: 'Morning: 6:00 AM - 10:00 AM | Evening: 2:30 PM - 6:30 PM',
     packages: [
-      { name: 'Bamboo Grove', price: '₹30,000', desc: 'Comfortable stay with zone-specific safaris.' },
-      { name: 'Tiger Trail', price: '₹38,000', desc: 'Premium lodge with guaranteed core zone entry.' }
+      { name: 'Bamboo Grove', price: '₹60,000', desc: 'Comfortable stay with zone-specific safaris.' },
+      { name: 'Tiger Trail', price: '₹75,000', desc: 'Premium lodge with guaranteed core zone entry.' }
     ],
     inclusions: ['Authorized Gypsy Safari', 'Forest Entry & Permit Fees', 'Driver & Guide Charges', 'Applicable Taxes'],
     exclusions: ['Travel to Tadoba (Pooling available at extra cost)', 'Personal Insurance', 'Tips & Gratuities', 'Alcoholic Beverages', 'International Flights', 'Camera Fees(if applicable)', 'Personal Expenses', 'Laundry', 'Tips and Gratuities'],

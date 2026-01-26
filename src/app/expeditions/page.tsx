@@ -52,7 +52,7 @@ export default function ExpeditionsPage() {
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/60 to-transparent opacity-90 transition-opacity duration-300" />
 
                                 {/* Content Overlay */}
-                                <div className="absolute inset-x-0 bottom-0 p-8 flex flex-col justify-end h-full pointer-events-none">
+                                <div className="absolute inset-x-0 bottom-0 px-8 pt-8 pb-12 flex flex-col justify-end h-full pointer-events-none">
                                     <div className="transform translate-y-8 group-hover:translate-y-0 transition-transform duration-300 pointer-events-auto">
                                         {/* Top Badges */}
                                         <div className="flex items-center gap-2 mb-3 opacity-80 group-hover:opacity-100 transition-opacity duration-300">
@@ -78,10 +78,7 @@ export default function ExpeditionsPage() {
                                             </div>
                                         </div>
 
-                                        {/* Description */}
-                                        <p className="text-gray-400 text-sm mb-4 line-clamp-2 opacity-0 group-hover:opacity-100 transition-all duration-300 h-0 group-hover:h-auto">
-                                            {exp.description}
-                                        </p>
+
 
                                         {/* Footer / CTA */}
                                         <div className="flex items-center justify-between pt-4 border-t border-white/20 opacity-60 group-hover:opacity-100 transition-opacity duration-300">

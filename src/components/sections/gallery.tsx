@@ -1,13 +1,11 @@
 'use client';
 
 import { galleryImages } from '@/lib/constants';
-import { Mountain, ArrowRight } from 'lucide-react';
-import AnimatedButton from '@/components/ui/AnimatedButton';
-import { useRouter } from 'next/navigation';
+import { Mountain } from 'lucide-react';
+import Link from 'next/link';
+import Button from '@/components/ui/button';
 
 export default function Gallery() {
-  const router = useRouter();
-
   return (
     <section className="section-padding bg-transparent" id="gallery">
       <div className="container-custom">
@@ -24,7 +22,6 @@ export default function Gallery() {
           </p>
         </div>
 
-        {/* Gallery Grid */}
         {/* Gallery Marquee */}
         <div className="relative w-full overflow-hidden mask-gradient">
           <div className="flex w-max animate-scroll gap-6">
@@ -60,15 +57,12 @@ export default function Gallery() {
         </div>
 
         {/* View All Button */}
-        <div className="flex justify-center mt-12 bg-transparent">
-          <AnimatedButton
-            variant="white"
-            onClick={() => router.push('/gallery')}
-            className="border border-white/20 bg-transparent text-white hover:bg-white/10"
-            icon={ArrowRight}
-          >
-            View Full Gallery
-          </AnimatedButton>
+        <div className="text-center mt-12">
+          <Link href="/gallery">
+            <Button variant="outline" size="lg">
+              View Full Gallery
+            </Button>
+          </Link>
         </div>
       </div>
     </section>
