@@ -1,23 +1,19 @@
 import { MapPin, Phone, Mail, Clock, Facebook, Instagram, Twitter, Youtube } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { expeditions } from '@/lib/constants';
+import { slugify } from '@/lib/utils';
 
 export default function Footer() {
   const quickLinks = [
-    { name: 'Home', href: '#' },
-    { name: 'Expeditions', href: '#expeditions' },
-    { name: 'About Us', href: '#about' },
-    { name: 'Team', href: '#team' },
-    { name: 'Gallery', href: '#gallery' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Home', href: '/' },
+    { name: 'Expeditions', href: '/#expeditions' },
+    { name: 'About Us', href: '/#about' },
+    { name: 'Team', href: '/#team' },
+    { name: 'Gallery', href: '/#gallery' },
+    { name: 'Contact', href: '/#contact' },
   ];
 
-  const expeditions = [
-    { name: 'Bandipur Tiger Reserve', href: '#' },
-    { name: 'Mudumalai Tiger Reserve', href: '#' },
-    { name: 'Bhadra Tiger Reserve', href: '#' },
-    { name: 'Kabini Tiger Reserve', href: '#' },
-  ];
 
   const socialLinks = [
     { icon: Facebook, href: '#', label: 'Facebook' },
@@ -84,12 +80,12 @@ export default function Footer() {
             <h3 className="text-lg font-semibold mb-6 text-white">Expeditions</h3>
             <ul className="space-y-3">
               {expeditions.map((expedition) => (
-                <li key={expedition.name}>
+                <li key={expedition.id}>
                   <Link
-                    href={expedition.href}
+                    href={`/expeditions/${slugify(expedition.title)}`}
                     className="text-gray-400 hover:text-primary transition-colors"
                   >
-                    {expedition.name}
+                    {expedition.title}
                   </Link>
                 </li>
               ))}
